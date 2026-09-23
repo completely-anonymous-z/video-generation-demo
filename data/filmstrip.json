@@ -1,0 +1,142 @@
+{
+  "rows": [
+    [
+      {
+        "case": "selected_icy_cave",
+        "image": "assets/filmstrip/varied-selected_icy_cave-1.jpg",
+        "time": 2.917,
+        "portrait": false
+      },
+      {
+        "case": "selected_bar",
+        "image": "assets/filmstrip/varied-selected_bar-1.jpg",
+        "time": 0.792,
+        "portrait": false
+      },
+      {
+        "case": "seminar_diaphragm",
+        "image": "assets/filmstrip/varied-seminar_diaphragm-1.jpg",
+        "time": 0.375,
+        "portrait": false
+      },
+      {
+        "case": "selected_night",
+        "image": "assets/filmstrip/varied-selected_night-1.jpg",
+        "time": 0.792,
+        "portrait": false
+      },
+      {
+        "case": "hallway_offscreen",
+        "image": "assets/filmstrip/varied-hallway_offscreen-1.jpg",
+        "time": 0.667,
+        "portrait": false
+      },
+      {
+        "case": "farewell_embrace",
+        "image": "assets/filmstrip/varied-farewell_embrace-1.jpg",
+        "time": 1.25,
+        "portrait": false
+      },
+      {
+        "case": "selected_retro_office",
+        "image": "assets/filmstrip/varied-selected_retro_office-1.jpg",
+        "time": 0.833,
+        "portrait": false
+      }
+    ],
+    [
+      {
+        "case": "selected_bedroom",
+        "image": "assets/filmstrip/varied-selected_bedroom-1.jpg",
+        "time": 2.25,
+        "portrait": false
+      },
+      {
+        "case": "selected_car",
+        "image": "assets/filmstrip/varied-selected_car-1.jpg",
+        "time": 0.75,
+        "portrait": false
+      },
+      {
+        "case": "selected_icy_cave",
+        "image": "assets/filmstrip/varied-selected_icy_cave-2.jpg",
+        "time": 10.083,
+        "portrait": false
+      },
+      {
+        "case": "selected_hallway",
+        "image": "assets/filmstrip/varied-selected_hallway-1.jpg",
+        "time": 1.5,
+        "portrait": false
+      },
+      {
+        "case": "bedroom_cup",
+        "image": "assets/filmstrip/varied-bedroom_cup-1.jpg",
+        "time": 0.458,
+        "portrait": false
+      },
+      {
+        "case": "selected_retro_office",
+        "image": "assets/filmstrip/varied-selected_retro_office-2.jpg",
+        "time": 9.5,
+        "portrait": false
+      },
+      {
+        "case": "seminar_diaphragm",
+        "image": "assets/filmstrip/varied-seminar_diaphragm-2.jpg",
+        "time": 2.208,
+        "portrait": false
+      }
+    ],
+    [
+      {
+        "case": "farewell_embrace",
+        "image": "assets/filmstrip/varied-farewell_embrace-2.jpg",
+        "time": 6.542,
+        "portrait": false
+      },
+      {
+        "case": "selected_night",
+        "image": "assets/filmstrip/varied-selected_night-2.jpg",
+        "time": 8.292,
+        "portrait": false
+      },
+      {
+        "case": "selected_bar",
+        "image": "assets/filmstrip/varied-selected_bar-2.jpg",
+        "time": 9.208,
+        "portrait": false
+      },
+      {
+        "case": "bedroom_cup",
+        "image": "assets/filmstrip/varied-bedroom_cup-2.jpg",
+        "time": 4.833,
+        "portrait": false
+      },
+      {
+        "case": "hallway_offscreen",
+        "image": "assets/filmstrip/varied-hallway_offscreen-2.jpg",
+        "time": 5.917,
+        "portrait": false
+      },
+      {
+        "case": "selected_car",
+        "image": "assets/filmstrip/varied-selected_car-2.jpg",
+        "time": 6.625,
+        "portrait": false
+      },
+      {
+        "case": "selected_bedroom",
+        "image": "assets/filmstrip/varied-selected_bedroom-2.jpg",
+        "time": 7.75,
+        "portrait": false
+      },
+      {
+        "case": "selected_hallway",
+        "image": "assets/filmstrip/varied-selected_hallway-2.jpg",
+        "time": 7.208,
+        "portrait": false
+      }
+    ]
+  ]
+}

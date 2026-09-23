@@ -1,0 +1,440 @@
+{
+  "name": "Supplementary Video Examples",
+  "entrypoint": "please_click_me.html",
+  "file_count": 86,
+  "bytes": 83088172,
+  "notes": "Extract the entire archive and open please_click_me.html for offline viewing. Inventory excludes MANIFEST.json. Aggregate SHA-256 uses UTF-8 records sorted by path: path, TAB, decimal bytes, TAB, file SHA-256, LF.",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 24,
+      "sha256": "39976a95b4fe9c83bcf90a7b3eb575e32f1d3d847723e3c5abbf895b793acec1"
+    },
+    {
+      "path": ".nojekyll",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/brand/demo-clapperboard.ico",
+      "bytes": 11861,
+      "sha256": "e6e55f9101389b0e96e6e08ce1f78545511bcfa6c94e911d5cf4fdbfeb1a5ac6"
+    },
+    {
+      "path": "assets/film-perforation.svg",
+      "bytes": 172,
+      "sha256": "dd6efe69b72d509730838a07e2786cd2dec6153125f31d537ea1fc4bad8e67cb"
+    },
+    {
+      "path": "assets/filmstrip/varied-bedroom_cup-1.jpg",
+      "bytes": 47422,
+      "sha256": "de7b31e27f4c1365a3a680a8ba7d305d8618b73eb9130f26c3ae791ef6b21acd"
+    },
+    {
+      "path": "assets/filmstrip/varied-bedroom_cup-2.jpg",
+      "bytes": 46087,
+      "sha256": "0302331905c7510ba749d314e9c9bb81488c98495b13d5aa5d57bc78f15ee2fc"
+    },
+    {
+      "path": "assets/filmstrip/varied-farewell_embrace-1.jpg",
+      "bytes": 42553,
+      "sha256": "e27161e5167e47d48fd6bde24b504f7c42b59bb3c39fb440cf01f7a1690cc25b"
+    },
+    {
+      "path": "assets/filmstrip/varied-farewell_embrace-2.jpg",
+      "bytes": 46215,
+      "sha256": "db8516baae3ab4ea0b53f32fe61cd32071df2121e42dad550b65bf833431cac8"
+    },
+    {
+      "path": "assets/filmstrip/varied-hallway_offscreen-1.jpg",
+      "bytes": 29747,
+      "sha256": "3956127f04799ec8c1ae16af38d36f948eabf74fb2bb06b6a52e22391eacb43c"
+    },
+    {
+      "path": "assets/filmstrip/varied-hallway_offscreen-2.jpg",
+      "bytes": 27531,
+      "sha256": "9cb5dc19de06ab5b57df424308732298d9797ed3fa8380c8f7ceeb7e28fcd1bb"
+    },
+    {
+      "path": "assets/filmstrip/varied-selected_bar-1.jpg",
+      "bytes": 36910,
+      "sha256": "99d03113254e34e8f47ef28ad0951cf54ab8b2aeffd533887742798752b5a434"
+    },
+    {
+      "path": "assets/filmstrip/varied-selected_bar-2.jpg",
+      "bytes": 36653,
+      "sha256": "9ced4056b50e6c71df9127706439b95482f658908b56a51dd01d894e765c36c2"
+    },
+    {
+      "path": "assets/filmstrip/varied-selected_bedroom-1.jpg",
+      "bytes": 45908,
+      "sha256": "8d537a5d30f1de7373168c10314170a314fc9d830cd972bf6651b7589a0ae0ea"
+    },
+    {
+      "path": "assets/filmstrip/varied-selected_bedroom-2.jpg",
+      "bytes": 43218,
+      "sha256": "da2117831e83b35dcdafe85ec55700b9789e64a5211526ccab0fada3c7882706"
+    },
+    {
+      "path": "assets/filmstrip/varied-selected_car-1.jpg",
+      "bytes": 45018,
+      "sha256": "40c8325c9b42261020aeebc5952e0edc846829260fe0ae51749f782b1189085d"
+    },
+    {
+      "path": "assets/filmstrip/varied-selected_car-2.jpg",
+      "bytes": 46258,
+      "sha256": "65ae42463897363be3631ee9f3d715c9a59fbf1579ef2223dafd70b7ee492244"
+    },
+    {
+      "path": "assets/filmstrip/varied-selected_hallway-1.jpg",
+      "bytes": 35538,
+      "sha256": "b169bc223cbf9613693508ae358d2bd7828d8c07927073bb5824a66b2e0fe699"
+    },
+    {
+      "path": "assets/filmstrip/varied-selected_hallway-2.jpg",
+      "bytes": 31592,
+      "sha256": "f5430708142db544c2085fd7ca15c70bfb7f0038cc9c12abe23d4ae0fb4bcc9c"
+    },
+    {
+      "path": "assets/filmstrip/varied-selected_icy_cave-1.jpg",
+      "bytes": 48694,
+      "sha256": "6b86eb26508691ee255e3dec1aa4e006a8108b1a13fa9ab334a0d028d1c01747"
+    },
+    {
+      "path": "assets/filmstrip/varied-selected_icy_cave-2.jpg",
+      "bytes": 44205,
+      "sha256": "420cb6795708d3dab713b4da28cca59f72b6bb656f6ea43707722b5aad736634"
+    },
+    {
+      "path": "assets/filmstrip/varied-selected_night-1.jpg",
+      "bytes": 25818,
+      "sha256": "e4b4890cfbaef964c20a1765cf9e4f81e3934fababe87efc7109f621b82d52d3"
+    },
+    {
+      "path": "assets/filmstrip/varied-selected_night-2.jpg",
+      "bytes": 27723,
+      "sha256": "f67b9d11eb43bd86ab24b1443bbb93860ff9cf4a40338ef5e77a6282ec12145a"
+    },
+    {
+      "path": "assets/filmstrip/varied-selected_retro_office-1.jpg",
+      "bytes": 34823,
+      "sha256": "b44d730926718ba4ed5b931e4787f590123aab641d2122db2a0a7001591f968d"
+    },
+    {
+      "path": "assets/filmstrip/varied-selected_retro_office-2.jpg",
+      "bytes": 57714,
+      "sha256": "bd9435b3d9ab1a88ad0ae4e72e82b98705c77aa3dcd855996f7e57a09d8299ea"
+    },
+    {
+      "path": "assets/filmstrip/varied-seminar_diaphragm-1.jpg",
+      "bytes": 37629,
+      "sha256": "9669edf905b400b02c5764987f7bf8e5188e895de6977cf6bb151c2fc0b681f7"
+    },
+    {
+      "path": "assets/filmstrip/varied-seminar_diaphragm-2.jpg",
+      "bytes": 40340,
+      "sha256": "1159328c0ffefc33e5f6e82a7ac760ae85d2272258e9aed2dcfd94d674ce1888"
+    },
+    {
+      "path": "assets/fonts/inter-OFL.txt",
+      "bytes": 4377,
+      "sha256": "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57"
+    },
+    {
+      "path": "assets/fonts/inter.ttf",
+      "bytes": 876576,
+      "sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+    },
+    {
+      "path": "assets/frame/hallway_offscreen.jpg",
+      "bytes": 18268,
+      "sha256": "3a741fbe105a6cd10589f78e33ed067031fb95bb8208bd4715aac2ac8bd8a561"
+    },
+    {
+      "path": "assets/frame/selected_icy_cave.jpg",
+      "bytes": 108297,
+      "sha256": "be1b5d57ba1f7db1468ba0225c8f4aa138d94206b2b1b55867ce77cb8f728c56"
+    },
+    {
+      "path": "assets/frame/seminar_diaphragm-user-20260918.jpg",
+      "bytes": 23823,
+      "sha256": "22c63afa57e5f828380970fd85b9ffcb4276ff5535acfd16f68329c9741c1507"
+    },
+    {
+      "path": "assets/mark.svg",
+      "bytes": 2709,
+      "sha256": "3c092499bcfb2c5b0cc06a8da463aa675b424556728d13bda7613e045d6b5a1d"
+    },
+    {
+      "path": "assets/pipeline.svg",
+      "bytes": 2963697,
+      "sha256": "7e62988c649af7d31fe8edac61e4783ac015bf8ad4589c68d5b170bc7e2973c4"
+    },
+    {
+      "path": "assets/poster/hallway_offscreen-davinci.jpg",
+      "bytes": 8948,
+      "sha256": "110d8dcf62fa8a58f12e5db947dd501eb4983e6b0148e827a844f69b3f9800cc"
+    },
+    {
+      "path": "assets/poster/hallway_offscreen-ltx23.jpg",
+      "bytes": 8749,
+      "sha256": "e1c3c8bb3cb0afa71d41ac912e82b06ccab6fffaa2355a54983e8f68de7cc141"
+    },
+    {
+      "path": "assets/poster/hallway_offscreen-mova.jpg",
+      "bytes": 9940,
+      "sha256": "3af2af291da26f2be7a30ef846c48b464f93736e932cf138d33584cfffa675b2"
+    },
+    {
+      "path": "assets/poster/hallway_offscreen-nava.jpg",
+      "bytes": 8902,
+      "sha256": "b15302fe36bb54ae1be6df860e0c51f77b107b393481cfeb2102a86436cdd102"
+    },
+    {
+      "path": "assets/poster/hallway_offscreen-ovi.jpg",
+      "bytes": 8821,
+      "sha256": "34c05f2ff70a9a969dd0bc06a722ee57a0514ee3f0e06a8d91f2cd75c93fb168"
+    },
+    {
+      "path": "assets/poster/hallway_offscreen.jpg",
+      "bytes": 15017,
+      "sha256": "109929fd7fa90db8962701cc0ef5c2ad4a03f128c001596af4db2a1b31e09aba"
+    },
+    {
+      "path": "assets/poster/selected_icy_cave/davinci-20260918.jpg",
+      "bytes": 21331,
+      "sha256": "c5c5cb07cb513a6b0c3bbc08284e9e711bb43640d718e4e5321b098576ee815c"
+    },
+    {
+      "path": "assets/poster/selected_icy_cave/ltx23-20260918.jpg",
+      "bytes": 19617,
+      "sha256": "8be80e7c10ec5cf95ab29c13dafff698cd0c22a77b8ab34f176deb004b3e86f0"
+    },
+    {
+      "path": "assets/poster/selected_icy_cave/mova-20260918.jpg",
+      "bytes": 20320,
+      "sha256": "53fa5ad2efa87872f8cf87a2d2e9dcd47f86d5d22776c538b77f3b76304a75ee"
+    },
+    {
+      "path": "assets/poster/selected_icy_cave/nava-20260918.jpg",
+      "bytes": 21187,
+      "sha256": "308fd598e49496a18842c17498de6e96cc13444e515c4e732547e4341175551b"
+    },
+    {
+      "path": "assets/poster/selected_icy_cave/ovi-20260918.jpg",
+      "bytes": 20041,
+      "sha256": "b8f772ac9f9eac36c5545f160687fb32942a883e23c481524edf11dab7b4d825"
+    },
+    {
+      "path": "assets/poster/selected_icy_cave.jpg",
+      "bytes": 22742,
+      "sha256": "f959a07131610f5f8deb8de4db1ec9e658881848ffcf1af3874112d2470a843a"
+    },
+    {
+      "path": "assets/poster/seminar_diaphragm/davinci-20260918.jpg",
+      "bytes": 18488,
+      "sha256": "7449ab2ced1a645f39531d8bc25f85b80a952b349fa1c614996f28c96aca7091"
+    },
+    {
+      "path": "assets/poster/seminar_diaphragm/ltx23-20260918.jpg",
+      "bytes": 16318,
+      "sha256": "13da085a54e2e719f3fc46dfa15f0bbc2374fbdf812bec6ca3a1595ed4d3998b"
+    },
+    {
+      "path": "assets/poster/seminar_diaphragm/mova-20260918.jpg",
+      "bytes": 17717,
+      "sha256": "8c411e63f754c5c1750a3b6974f77843ee1cf3bb2a17746753ddcb6a03134bdc"
+    },
+    {
+      "path": "assets/poster/seminar_diaphragm/nava-20260918.jpg",
+      "bytes": 18673,
+      "sha256": "d8b1e7e165ad0a9129c344c440c5029687403c7baad1fec20f51ee54d73aa60f"
+    },
+    {
+      "path": "assets/poster/seminar_diaphragm/ovi-20260918.jpg",
+      "bytes": 17499,
+      "sha256": "5d28dec1ac4bbee33d403c494e95787ce90f86d20d581697901c15062dd350d9"
+    },
+    {
+      "path": "assets/poster/seminar_diaphragm-user-20260918.jpg",
+      "bytes": 21959,
+      "sha256": "7a6c5e0484a58cda01992f9cac7b4bb5a940d12668f23e3674b52024d3c63d12"
+    },
+    {
+      "path": "assets/showreel/demo-poster.jpg",
+      "bytes": 246312,
+      "sha256": "6a633209df53546f1a686421dc156c2fc1e4061d202fb04c9818780973f5d5f3"
+    },
+    {
+      "path": "assets/showreel/demo_v2.mp4",
+      "bytes": 31489365,
+      "sha256": "db42f915b4ba5c249c04de3aeaa2da3c04a236f3ec4dda5322d657d2eab29021"
+    },
+    {
+      "path": "assets/video/hallway_offscreen/davinci.mp4",
+      "bytes": 131336,
+      "sha256": "ff65af9d0853820d0ca1a9452f836d714a7b00423481ecd9b64f45d49fca6798"
+    },
+    {
+      "path": "assets/video/hallway_offscreen/ltx23.mp4",
+      "bytes": 4092948,
+      "sha256": "6fb42e641f5a7eb7473ff6dccb2d044412d3627f96e51efff9313fea7c92159f"
+    },
+    {
+      "path": "assets/video/hallway_offscreen/mova.mp4",
+      "bytes": 180160,
+      "sha256": "e452e4ffb729db1001c209c2e0a70f630516b9f40099a8f97d8cc483d0462dc3"
+    },
+    {
+      "path": "assets/video/hallway_offscreen/nava.mp4",
+      "bytes": 196684,
+      "sha256": "5081429a9b1e1a0db64acaacaf198e5b5c7ff3315c9ab0a1082ec964cb821e96"
+    },
+    {
+      "path": "assets/video/hallway_offscreen/ours.mp4",
+      "bytes": 481286,
+      "sha256": "e6d584c28b3d6d0d62d2ec83942364657f5a241b0b17d7f43dc8b94e0795f13d"
+    },
+    {
+      "path": "assets/video/hallway_offscreen/ovi.mp4",
+      "bytes": 259520,
+      "sha256": "e85f415aeacd453a6c18d1bdf6fb1cc1774439f30bbefaa372cd870e42844516"
+    },
+    {
+      "path": "assets/video/selected_icy_cave/davinci-20260918.mp4",
+      "bytes": 6925567,
+      "sha256": "a0dee2d85d0bd9457d5d1564b72e3be075c17aeb2643d0ccb7b5f4773e56f566"
+    },
+    {
+      "path": "assets/video/selected_icy_cave/ltx23-20260918.mp4",
+      "bytes": 3990001,
+      "sha256": "d3c08a042969ae50854f30f4272ef9863f35f870df492ea976d597ef9324e73a"
+    },
+    {
+      "path": "assets/video/selected_icy_cave/mova-20260918.mp4",
+      "bytes": 7280398,
+      "sha256": "eaa955a95617d3ef09999cb31a3d768a4c6ab4ec52275bd537c9888446790fae"
+    },
+    {
+      "path": "assets/video/selected_icy_cave/nava-20260918.mp4",
+      "bytes": 3585966,
+      "sha256": "d79bab0735d48d97910c0195510c0de915ac0eebdf9994befb54d53ccef82e7e"
+    },
+    {
+      "path": "assets/video/selected_icy_cave/ours-web.mp4",
+      "bytes": 5466000,
+      "sha256": "1ad66b9951a380880206485aa42c87bddfbb9aecbb41f1876b6c035b70165846"
+    },
+    {
+      "path": "assets/video/selected_icy_cave/ovi-20260918.mp4",
+      "bytes": 1461782,
+      "sha256": "5dda836cca4ab92404ccafe29e9c8f819f69f2c7ace41e81ec89ec0f022b2568"
+    },
+    {
+      "path": "assets/video/seminar_diaphragm/davinci-20260918.mp4",
+      "bytes": 3486407,
+      "sha256": "ce1085ededffbc9eb04fee72ab1eb9b84bf58868c8dc3abb3da1ff26b42641d4"
+    },
+    {
+      "path": "assets/video/seminar_diaphragm/ltx23-20260918.mp4",
+      "bytes": 1186499,
+      "sha256": "ecdf10dd670cb0fb3fd16f7fded8d50bf5dc5af6b90fae3c102c63033bbc5da5"
+    },
+    {
+      "path": "assets/video/seminar_diaphragm/mova-20260918.mp4",
+      "bytes": 3094688,
+      "sha256": "e3689f0ac1c167559aa2c699eb5e17c0f27b0768b72141c11b3ca621fec882e1"
+    },
+    {
+      "path": "assets/video/seminar_diaphragm/nava-20260918.mp4",
+      "bytes": 1255331,
+      "sha256": "cd62479ae4b173d9372b5052d87070d5f1bd2ecd59de3c096dd068a50223d226"
+    },
+    {
+      "path": "assets/video/seminar_diaphragm/ours-user-20260918.mp4",
+      "bytes": 1725678,
+      "sha256": "a112e0f71c0b3e22853679e0531768a1f82e1f05a9550b836f5074465e31f89b"
+    },
+    {
+      "path": "assets/video/seminar_diaphragm/ovi-20260918.mp4",
+      "bytes": 1195099,
+      "sha256": "d012f0e90f2a43ce2e2124ad16cc1388bc6ff81d8ec283df411973001539ec00"
+    },
+    {
+      "path": "css/cinema.css",
+      "bytes": 11492,
+      "sha256": "bd30bca5c1140fbeec51b77a9d4f6a2864865aa869abacf1d016d06c3f11c412"
+    },
+    {
+      "path": "css/main.css",
+      "bytes": 41545,
+      "sha256": "92964d95fbd6eabe84626067b194467f50d820a1b66377d55319162ed0b5b9f2"
+    },
+    {
+      "path": "css/research.css",
+      "bytes": 16139,
+      "sha256": "574b9e80b3fa97b834f11c4a3b1012b0effc4f5f8a0d7ec5739dbe78b1de4d48"
+    },
+    {
+      "path": "data/cases.json",
+      "bytes": 17612,
+      "sha256": "40e651c3000293f05f4d9421daf422c28d6dffad115865e706f44b0186c6a0d4"
+    },
+    {
+      "path": "data/filmstrip.json",
+      "bytes": 3738,
+      "sha256": "2c48d5d67f2d57bb7af0d19cbbc967a45c5f3a4a0f4d65cc46dc37897d83cfe8"
+    },
+    {
+      "path": "data/methods.json",
+      "bytes": 637,
+      "sha256": "bf691aba930d48848df723a041319b948692f8ae923e415bf29bc333b6d9e8d1"
+    },
+    {
+      "path": "data/showreel.json",
+      "bytes": 409,
+      "sha256": "31d008ea56cc05176358d84ebe84b4649e0ff73003538385b689b88c8cd64e34"
+    },
+    {
+      "path": "data/site.json",
+      "bytes": 498,
+      "sha256": "704930ac9301873ad388eb3530d4e04bba134b3ef9a2027099f5168415979975"
+    },
+    {
+      "path": "index.html",
+      "bytes": 8863,
+      "sha256": "7a6fc8ade8edf1943539289d862ed238276b94aa970e1d2c85f0b02e6e8183b0"
+    },
+    {
+      "path": "js/app.js",
+      "bytes": 28771,
+      "sha256": "9bc2424f36cccbf335a0e24c67a4f046f8ecc9837e21c0849748c327e0c71d76"
+    },
+    {
+      "path": "js/av.js",
+      "bytes": 11331,
+      "sha256": "fd61fa3761fd155bf2e05bcdee87b8f23e9c470f8841e31939c8ddae499ec2b2"
+    },
+    {
+      "path": "js/data.js",
+      "bytes": 17829,
+      "sha256": "66d43bf11aeb608793eabaa9f281bb626b701e19e70df6a7354154de25437b54"
+    },
+    {
+      "path": "js/diagram.js",
+      "bytes": 1489,
+      "sha256": "d9609876bf57ea50edd296de820bb5ecc6507c8405f2a33304eb9bf72131f1d6"
+    },
+    {
+      "path": "please_click_me.html",
+      "bytes": 8863,
+      "sha256": "7a6fc8ade8edf1943539289d862ed238276b94aa970e1d2c85f0b02e6e8183b0"
+    },
+    {
+      "path": "serve.py",
+      "bytes": 4260,
+      "sha256": "16627a50c1b35a69688929cd443486233914bce33875edcb002ac478975829c7"
+    }
+  ],
+  "aggregate_sha256": "27e130c278cedc3ea9c846591ac8c18c8fbb04b363a4fff92e3b57817b43875c"
+}

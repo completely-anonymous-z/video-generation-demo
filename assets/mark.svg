@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Proposed method cartoon clapperboard</title>
+  <desc id="desc">A smiling mint-green film slate with a raised black-and-white striped clapper, rounded corners, and a transparent background.</desc>
+  <defs>
+    <clipPath id="lower-stripes"><rect x="70" y="194" width="372" height="60" rx="16"/></clipPath>
+    <clipPath id="upper-stripes"><rect x="70" y="111" width="372" height="66" rx="17"/></clipPath>
+  </defs>
+  <!-- The thick, rounded silhouette stays legible at favicon sizes. -->
+  <rect x="81" y="211" width="372" height="234" rx="37" fill="#102E2A"/>
+  <rect x="70" y="200" width="372" height="234" rx="32" fill="#67D6B5" stroke="#102E2A" stroke-width="16"/>
+  <path d="M89 351v43c0 12 10 22 22 22h290c13 0 23-10 23-23V283c-26 73-165 129-335 68Z" fill="#40BFA0"/>
+  <path d="M99 292v-10c0-10 8-18 18-18h82" stroke="#B7F4DD" stroke-width="10" stroke-linecap="round"/>
+  <rect x="70" y="194" width="372" height="60" rx="16" fill="#F8F5E9"/>
+  <g clip-path="url(#lower-stripes)" fill="#173630">
+    <path d="m104 194 31 60H82l-31-60Zm99 0 31 60h-53l-31-60Zm99 0 31 60h-53l-31-60Zm99 0 31 60h-53l-31-60Z"/>
+  </g>
+  <rect x="70" y="194" width="372" height="60" rx="16" stroke="#102E2A" stroke-width="16"/>
+  <!-- An open clapper gives the mark its distinctive silhouette. -->
+  <g transform="rotate(-16 88 178)">
+    <rect x="70" y="111" width="372" height="66" rx="17" fill="#F8F5E9"/>
+    <g clip-path="url(#upper-stripes)" fill="#173630">
+      <path d="m96 111 35 66h55l-35-66Zm100 0 35 66h55l-35-66Zm100 0 35 66h55l-35-66Zm100 0 35 66h55l-35-66Z"/>
+    </g>
+    <path d="M91 120h327" stroke="#FFFFFF" stroke-opacity=".24" stroke-width="6" stroke-linecap="round"/>
+    <rect x="70" y="111" width="372" height="66" rx="17" stroke="#102E2A" stroke-width="16"/>
+  </g>
+  <path d="M81 169c-9 0-16 7-16 16v43c0 9 7 16 16 16h18c9 0 16-7 16-16v-43c0-9-7-16-16-16H81Z" fill="#F5C866" stroke="#102E2A" stroke-width="12"/>
+  <circle cx="90" cy="191" r="5" fill="#102E2A"/>
+  <circle cx="90" cy="225" r="5" fill="#102E2A"/>
+  <!-- A small expression keeps the film slate friendly without extra props. -->
+  <rect x="180" y="300" width="19" height="31" rx="9.5" fill="#102E2A"/>
+  <rect x="312" y="300" width="19" height="31" rx="9.5" fill="#102E2A"/>
+  <path d="M229 337c5 17 16 25 27 25s22-8 27-25" stroke="#102E2A" stroke-width="12" stroke-linecap="round"/>
+  <path d="M156 340h24m152 0h24" stroke="#F4BBA3" stroke-width="12" stroke-linecap="round"/>
+  <path d="M133 394h67m28 0h150" stroke="#D1F8E8" stroke-width="8" stroke-linecap="round"/>
+</svg>

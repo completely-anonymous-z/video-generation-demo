@@ -1,0 +1,41 @@
+[
+  {
+    "id": "ours",
+    "label": "Proposed method",
+    "short": "Ours",
+    "ours": true,
+    "order": 0
+  },
+  {
+    "id": "ltx23",
+    "label": "LTX-2.3",
+    "short": "LTX-2.3",
+    "role": "backbone",
+    "order": 1,
+    "note": "Our backbone. Same first frame, same screenplay."
+  },
+  {
+    "id": "nava",
+    "label": "NAVA",
+    "short": "NAVA",
+    "order": 2
+  },
+  {
+    "id": "mova",
+    "label": "MOVA",
+    "short": "MOVA",
+    "order": 3
+  },
+  {
+    "id": "davinci",
+    "label": "daVinci",
+    "short": "daVinci",
+    "order": 4
+  },
+  {
+    "id": "ovi",
+    "label": "OVI",
+    "short": "OVI",
+    "order": 5
+  }
+]

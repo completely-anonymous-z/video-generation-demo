@@ -1,0 +1,11 @@
+{
+  "title": "A screenplay, brought to life",
+  "video": "assets/showreel/demo_v2.mp4",
+  "poster": "assets/showreel/demo-poster.jpg",
+  "width": 1280,
+  "height": 720,
+  "duration": 45.625,
+  "chapters": [],
+  "version": "dbcf3e782371",
+  "encoding_note": "H.264 video at a target 6 Mbps for browser compatibility; original resolution, frame rate and frame count retained; encoded audio copied unchanged."
+}
