@@ -191,7 +191,7 @@ function renderFilmIndex() {
   const root = $('#film-index'); root.replaceChildren();
   allCases.forEach((c) => {
     const button = node('button', 'film-option');
-    button.innerHTML = `<span class="film-thumb"><img src="${esc(c.poster)}" alt="" loading="lazy" width="480" height="270"></span><span class="film-names"><span>${esc(shortTitles[c.id] || c.title)}</span><span class="selected-mark" aria-hidden="true">${selectedId === c.id ? 'Selected' : 'View scene'}</span></span>`;
+    button.innerHTML = `<span class="film-thumb"><img src="${esc(c.poster)}" alt="" loading="lazy" width="480" height="270"></span><span class="film-names"><span>${esc(shortTitles[c.id] || c.title)}</span><span class="selected-mark" aria-hidden="true">${selectedId === c.id ? 'Current' : 'View scene'}</span></span>`;
     button.setAttribute('aria-pressed', String(selectedId === c.id));
     button.setAttribute('aria-controls', 'case-host');
     button.addEventListener('click', () => selectCase(c.id, { scroll: true, focus: true }));
@@ -254,7 +254,7 @@ function renderCase(c) {
     methods.forEach((method) => { const option = node('option', '', esc(method.label)); option.value = method.id; pairSelect.append(option); });
     pairSelect.value = compared;
     selector.append(pairSelect); toolbar.append(node('p', '', `Same first frame. Same screenplay.${Number.isInteger(c.seed) ? ` Proposed method: seed ${c.seed}.` : ''}`), selector);
-  } else toolbar.append(node('p', '', c.featured ? ('Selected Proposed method output' + (Number.isInteger(c.seed) ? ' · seed ' + c.seed : '')) : 'Additional generation example'));
+  } else toolbar.append(node('p', '', c.featured ? ('Proposed method output' + (Number.isInteger(c.seed) ? ' · seed ' + c.seed : '')) : 'Additional generation example'));
   const viewer = node('div', 'viewer' + (methods.length ? ' is-paired' : ''));
   const primary = node('div', 'primary-wrap');
   const main = media(c, 'ours', 'Proposed method');
