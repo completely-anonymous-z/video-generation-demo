@@ -404,7 +404,7 @@ function bindKeyboardTabs(selector) {
 
 async function initialize() {
   try {
-    const response = await fetch('data/results.json?v=20261111-actions');
+    const response = await fetch('data/results.json?v=20261111-sources25');
     if (!response.ok) throw new Error('Supplement data unavailable');
     reviewData = await response.json();
     $('.skip-link').addEventListener('click', event => {
