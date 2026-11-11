@@ -266,13 +266,14 @@ function getQuestion(anchor) {
 function resolveRoute() {
   let hash;
   try { hash = decodeURIComponent(location.hash.slice(1)); } catch (_) { hash = ''; }
-  const [questionAnchor, requested, group] = hash.split('/');
+  const [questionAnchor, requestedId, group] = hash.split('/');
+  const requested = reviewData.evidenceAliases?.[requestedId] || requestedId;
   const match = getQuestion(questionAnchor) || getQuestion(reviewData.defaultQuestion);
   const evidence = match.question.evidence.includes(requested) ? requested : match.question.evidence[0];
   const canonical = group && Object.hasOwn(reviewData.legacyGroups, group) ? reviewData.legacyGroups[group] : group;
-  if (evidence === requested && group && canonical !== group) {
+  if (evidence === requested && (requested !== requestedId || (group && canonical !== group))) {
     const url = new URL(location.href);
-    url.hash = `${match.question.anchor}/${evidence}/${canonical}`;
+    url.hash = `${match.question.anchor}/${evidence}${canonical ? "/" + canonical : ""}`;
     history.replaceState(null, '', url);
   }
   return {...match, evidence, requested: evidence === requested ? canonical : null};
@@ -399,7 +400,7 @@ function bindKeyboardTabs(selector) {
 
 async function initialize() {
   try {
-    const response = await fetch('data/results.json?v=20261111');
+    const response = await fetch('data/results.json?v=20261111-sources');
     if (!response.ok) throw new Error('Supplement data unavailable');
     reviewData = await response.json();
     $('.skip-link').addEventListener('click', event => {
