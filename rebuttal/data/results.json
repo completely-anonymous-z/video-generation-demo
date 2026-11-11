@@ -77,7 +77,7 @@
             "e11",
             "e12"
           ],
-          "intro": "View the overall accuracy, then compare the requested character in each video pair."
+          "intro": "For each video pair, compare the highlighted action sequence with the outputs."
         },
         {
           "anchor": "t5CX-Q2",
@@ -196,7 +196,7 @@
           "id": "nonhuman-comparison",
           "code": "Video E9",
           "title": "An exchange in the ice cave",
-          "description": "Watch which character exits: the orange puppet should leave; the blue puppet should remain.",
+          "description": "",
           "videos": [
             {
               "src": "assets/videos/nonhuman-ours.mp4",
@@ -215,7 +215,15 @@
           ],
           "conditions": [
             "Matched first frame"
-          ]
+          ],
+          "expectedActions": {
+            "steps": [
+              "The orange puppet on the left speaks to the blue puppet on the right.",
+              "The blue puppet turns toward the other puppets and replies.",
+              "The blue puppet turns forward and speaks again while the orange puppet exits to the left."
+            ],
+            "throughout": "The blue puppet stays in the shot."
+          }
         }
       ],
       "code": "E9"
@@ -228,7 +236,7 @@
           "id": "partially-offscreen-comparison",
           "code": "Video E10 · Case 1",
           "title": "Only the cropped left fighter should straighten",
-          "description": "Only the cropped fighter on the left should straighten; her partner should remain bowed.",
+          "description": "",
           "videos": [
             {
               "src": "assets/videos/partially-offscreen-ours.mp4",
@@ -247,13 +255,20 @@
           ],
           "conditions": [
             "Matched first frame"
-          ]
+          ],
+          "expectedActions": {
+            "steps": [
+              "Only the partly cropped fighter on the left straightens from her bow.",
+              "She brings both fists up to guard, facing her partner."
+            ],
+            "throughout": "The right fighter stays bowed with her hands down; the referee remains still. The left fighter stays partly outside the frame."
+          }
         },
         {
           "id": "partially-offscreen-additional",
           "code": "Video E10 · Case 2",
           "title": "Only the cropped left fighter should straighten",
-          "description": "Compare the same requested action in another pair of outputs.",
+          "description": "",
           "videos": [
             {
               "src": "assets/videos/partially-offscreen-additional-ours.mp4",
@@ -274,7 +289,14 @@
             "Matched first frame",
             "8 seconds"
           ],
-          "folded": "Another output pair"
+          "folded": "Another output pair",
+          "expectedActions": {
+            "steps": [
+              "Only the partly cropped fighter on the left straightens from her bow.",
+              "She brings both fists up to guard, facing her partner."
+            ],
+            "throughout": "The right fighter stays bowed with her hands down; the referee remains still. The left fighter stays partly outside the frame."
+          }
         }
       ],
       "code": "E10"
@@ -287,7 +309,7 @@
           "id": "occluded-comparison",
           "code": "Video E11 · Case 1",
           "title": "Only the partly hidden diner should raise his glass",
-          "description": "Only the partly hidden uniformed diner should raise his glass.",
+          "description": "",
           "videos": [
             {
               "src": "assets/videos/occluded-ours.mp4",
@@ -306,13 +328,20 @@
           ],
           "conditions": [
             "Matched first frame"
-          ]
+          ],
+          "expectedActions": {
+            "steps": [
+              "The partly hidden uniformed diner (second from the left) raises his own glass beside his face.",
+              "He sets the glass back down."
+            ],
+            "throughout": "All other diners keep their glasses on the table. Everyone stays seated, and the foreground chair remains in place."
+          }
         },
         {
           "id": "occluded-additional",
           "code": "Video E11 · Case 2",
           "title": "Only the partly hidden diner should raise his glass",
-          "description": "Compare which diner raises a glass in another pair of outputs.",
+          "description": "",
           "videos": [
             {
               "src": "assets/videos/occluded-additional-ours.mp4",
@@ -333,7 +362,14 @@
             "Matched first frame",
             "8 seconds"
           ],
-          "folded": "Another output pair"
+          "folded": "Another output pair",
+          "expectedActions": {
+            "steps": [
+              "The partly hidden uniformed diner (second from the left) raises his own glass beside his face.",
+              "He sets the glass back down."
+            ],
+            "throughout": "All other diners keep their glasses on the table. Everyone stays seated, and the foreground chair remains in place."
+          }
         }
       ],
       "code": "E11"
@@ -346,7 +382,7 @@
           "id": "no-frontal-comparison",
           "code": "Video E12 · Case 1",
           "title": "Only the man in white should wave",
-          "description": "Only the man in white should wave; the woman should keep her hands down.",
+          "description": "",
           "videos": [
             {
               "src": "assets/videos/no-frontal-ours.mp4",
@@ -365,13 +401,20 @@
           ],
           "conditions": [
             "Matched first frame"
-          ]
+          ],
+          "expectedActions": {
+            "steps": [
+              "The man in white raises one open hand above his shoulder.",
+              "He waves once, then lowers that hand to his side."
+            ],
+            "throughout": "Both keep walking away without turning. The woman in pink keeps her bottle and hands down."
+          }
         },
         {
           "id": "no-frontal-additional",
           "code": "Video E12 · Case 2",
           "title": "Only the man in white should wave",
-          "description": "Compare the same requested action in another pair of outputs.",
+          "description": "",
           "videos": [
             {
               "src": "assets/videos/no-frontal-additional-ours.mp4",
@@ -392,7 +435,14 @@
             "Matched first frame",
             "8 seconds"
           ],
-          "folded": "Another output pair"
+          "folded": "Another output pair",
+          "expectedActions": {
+            "steps": [
+              "The man in white raises one open hand above his shoulder.",
+              "He waves once, then lowers that hand to his side."
+            ],
+            "throughout": "Both keep walking away without turning. The woman in pink keeps her bottle and hands down."
+          }
         }
       ],
       "code": "E12"

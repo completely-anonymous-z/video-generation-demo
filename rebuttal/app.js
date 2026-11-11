@@ -65,7 +65,11 @@ class ComparisonPlayer {
     this.root.innerHTML = `
       <div class="video-group-heading">
         <div class="item-heading"><div><span class="item-code">${escapeHTML(group.code)}</span><h3>${escapeHTML(group.title || `${group.people}-person conversation`)}</h3></div><button class="copy-link" data-anchor="${escapeHTML(group.anchor)}" aria-label="Copy link to ${group.code}">Copy link ↗</button></div>
-        ${group.description ? `<p class="video-description">${escapeHTML(group.description)}</p>` : ''}
+        ${group.expectedActions ? `<section class="expected-actions" aria-label="Expected action sequence">
+          <h4>Expected action sequence</h4>
+          <ol>${group.expectedActions.steps.map(step => `<li>${escapeHTML(step)}</li>`).join('')}</ol>
+          ${group.expectedActions.throughout ? `<p class="expected-constraint"><strong>Throughout:</strong> ${escapeHTML(group.expectedActions.throughout)}</p>` : ''}
+        </section>` : group.description ? `<p class="video-description">${escapeHTML(group.description)}</p>` : ''}
       </div>
       <div class="video-grid" style="--cols:${group.videos.length}">${group.videos.map((video, i) => `
         <div class="video-cell">
@@ -400,7 +404,7 @@ function bindKeyboardTabs(selector) {
 
 async function initialize() {
   try {
-    const response = await fetch('data/results.json?v=20261111-catalogues');
+    const response = await fetch('data/results.json?v=20261111-actions');
     if (!response.ok) throw new Error('Supplement data unavailable');
     reviewData = await response.json();
     $('.skip-link').addEventListener('click', event => {
