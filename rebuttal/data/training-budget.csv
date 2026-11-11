@@ -1,0 +1,4 @@
+Phase,Optimizer updates,Time/update,Estimated hours,H200 GPU-hours
+1: Alignment,"8,000",~33 s,~73.3,"~2,347"
+2: Adaptation,"2,000 additional",~27 s,~15.0,~480
+Total,"10,000",—,~88.3,"~2,827"

@@ -1,0 +1,688 @@
+{
+  "defaultQuestion": "NBxu-Q3",
+  "reviewers": [
+    {
+      "id": "NBxu",
+      "questions": [
+        {
+          "anchor": "NBxu-Q3",
+          "key": "Q3",
+          "title": "Same-data original-format control",
+          "comment": "Could you report LTX-2.3 fine-tuned on the same data with prose-style prompts, to separate the contribution of the data from that of the screenplay format and the Director?",
+          "evidence": [
+            "e1"
+          ],
+          "intro": "Compare the 8k stage-1 variants and the two 10k continuation variants."
+        },
+        {
+          "anchor": "NBxu-Q4",
+          "key": "Q4",
+          "title": "Quantitative annotation audit",
+          "comment": "Could you report the error rates of the annotation pipeline on a random sample (e.g., wrong speaker assignment), compared with Gemini-only annotation?",
+          "evidence": [
+            "e2"
+          ],
+          "intro": "Compare binding accuracy and error rates."
+        }
+      ]
+    },
+    {
+      "id": "ujuf",
+      "questions": [
+        {
+          "anchor": "ujuf-W1",
+          "key": "W1",
+          "title": "Component choices and methodological contribution",
+          "comment": "W1: the paper lacks elegance that might be desired on such a project. The system involves countless different pre-trained all knotted together (I count: Qwen, Gemma, Gemini, Keye, LTX) across textual, auditory and visual modalities. The authors neither provide quantitative evidence for each choice nor in my judgement make any attempt to brings things together in a more coherent way. It's somehow unsurprising that if one adds in all these pre-trained models, better performance is achievable. Beyond the screenplay curation, I don't think the conditioned video generation training is particularly novel.",
+          "evidence": [
+            "e3"
+          ],
+          "intro": "Compare the WER of final annotations with different ASR priors."
+        },
+        {
+          "anchor": "ujuf-Q1",
+          "key": "Q1",
+          "title": "Skipped ratings",
+          "comment": "Q1: How often did the human raters skip? Is this making differences look bigger than they are?",
+          "evidence": [
+            "e4"
+          ],
+          "intro": "View valid ratings and skips for each criterion."
+        },
+        {
+          "anchor": "ujuf-Q2",
+          "key": "Q2",
+          "title": "Data provenance and public access",
+          "comment": "Q2: training data is listed as publicly downloadable with added internal data. Both concern me as e.g. MovieNet video is not public and not sharing internal data or detailing is an issue for reproducibility. Do you have any comments?",
+          "evidence": [
+            "e5",
+            "e6",
+            "e7"
+          ],
+          "intro": "Open the source links in the tables."
+        }
+      ]
+    },
+    {
+      "id": "t5CX",
+      "questions": [
+        {
+          "anchor": "t5CX-Q1",
+          "key": "Q1",
+          "title": "Character binding beyond frontal faces",
+          "comment": "How robust is the model's character binding capability? Specifically, what level of improvement can be achieved for non-human characters, characters that are partially off-screen or occluded, or characters lacking a frontal face (e.g., those shown only in profile)?",
+          "evidence": [
+            "e8",
+            "e9",
+            "e10",
+            "e11",
+            "e12"
+          ],
+          "intro": "View the overall accuracy, then compare the requested character in each video pair."
+        },
+        {
+          "anchor": "t5CX-Q2",
+          "key": "Q2",
+          "title": "Script edits and complex scenes",
+          "comment": "Can the model's script execution capability be further verified? For instance, in edge cases where the speaker of a specific line, the executor of an action, or the chronological order of two events is altered, does the generated output change accordingly? Furthermore, can the model handle more complex scenarios, such as martial arts scenes or scenes with a larger number of characters?",
+          "evidence": [
+            "e13",
+            "e14",
+            "e15",
+            "e16"
+          ],
+          "intro": "Compare speaker assignment and event order. Additional clips show larger casts and martial arts."
+        },
+        {
+          "anchor": "t5CX-Q3",
+          "key": "Q3",
+          "title": "Benchmark composition and category results",
+          "comment": "While Director-Bench claims coverage of multi-language, multi-character, and non-human scenarios, it does not report the sample size, number of dialogue turns, or complexity distribution for each category. Since the automatic binding metric is only applicable to 31 cases featuring frontal human faces, the overall results likely reflect this specific subset. I recommend providing a detailed breakdown of the benchmark's composition and stratified results for key categories to clarify the scope of the generalization claims. For categories with very few samples, reporting case-by-case results would suffice, without the need for new large-scale evaluations.",
+          "evidence": [
+            "e17",
+            "e18",
+            "e19",
+            "e20",
+            "e21"
+          ],
+          "intro": "View the benchmark composition and category ratings."
+        },
+        {
+          "anchor": "t5CX-Q4",
+          "key": "Q4",
+          "title": "Action logic and spatial execution",
+          "comment": "I am curious whether the introduction of this structured script improves the logical coherence of actions or the spatial consistency in the generated videos.",
+          "evidence": [
+            "e22",
+            "e9",
+            "e23"
+          ],
+          "intro": "Compare gesture timing, which character stays in view, and corridor reverberation."
+        },
+        {
+          "anchor": "t5CX-Q5",
+          "key": "Q5",
+          "title": "Training budget",
+          "comment": "What are the specific number of training steps and the computational cost (e.g., GPU hours) for the two training stages?",
+          "evidence": [
+            "e24"
+          ],
+          "intro": "View the update counts and estimated training cost."
+        }
+      ]
+    }
+  ],
+  "evidence": {
+    "e1": {
+      "label": "Matched training controls",
+      "kind": "table",
+      "html": "<table>\n<thead>\n<tr>\n<th>Setting</th>\n<th>Steps</th>\n<th>FID ↓</th>\n<th>FVD ↓</th>\n<th>ID ↑</th>\n<th>WER ↓</th>\n<th>Turn Sync-C ↑</th>\n<th>Match ↑</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Native LTX-2.3</td>\n<td>0</td>\n<td>114.34</td>\n<td>34.79</td>\n<td>0.4951</td>\n<td>0.1192</td>\n<td>3.4091</td>\n<td>0.7500</td>\n</tr>\n<tr>\n<td>Same-data, original LTX format</td>\n<td>8k</td>\n<td>110.15</td>\n<td>33.42</td>\n<td>0.4841</td>\n<td>0.0986</td>\n<td>3.4278</td>\n<td>0.7529</td>\n</tr>\n<tr>\n<td>+ Screenplay</td>\n<td>8k</td>\n<td>113.27</td>\n<td>32.55</td>\n<td>0.4860</td>\n<td>0.0826</td>\n<td>3.5091</td>\n<td>0.7672</td>\n</tr>\n<tr>\n<td>Frozen Gemma: image + text (Q2)</td>\n<td>8k</td>\n<td>135.92</td>\n<td>48.16</td>\n<td>0.4423</td>\n<td>0.1780</td>\n<td>2.8322</td>\n<td>0.7425</td>\n</tr>\n<tr>\n<td>Frozen Director, Phase 1</td>\n<td>8k</td>\n<td>113.92</td>\n<td>31.42</td>\n<td>0.4975</td>\n<td>0.0782</td>\n<td>3.6566</td>\n<td>0.7985</td>\n</tr>\n<tr>\n<td>Frozen Director, continued</td>\n<td>10k</td>\n<td>116.24</td>\n<td>33.67</td>\n<td>0.4896</td>\n<td>0.1089</td>\n<td>3.4638</td>\n<td>0.7740</td>\n</tr>\n<tr>\n<td>Ours, full</td>\n<td>10k</td>\n<td>108.19</td>\n<td>28.28</td>\n<td>0.4992</td>\n<td>0.0769</td>\n<td>3.8979</td>\n<td>0.8491</td>\n</tr>\n</tbody>\n</table>\n",
+      "csv": "data/matched-controls.csv",
+      "code": "E1",
+      "context": "Stage 1: 8k updates. Continued/adapted Director: 10k total. ID: ArcFace similarity; Match: Speaker Match. Binding metrics use 31 cases."
+    },
+    "e2": {
+      "label": "Binding annotation audit",
+      "kind": "table",
+      "html": "<table>\n<thead>\n<tr>\n<th>Pipeline</th>\n<th style=\"text-align:right\">Binding correct</th>\n<th style=\"text-align:right\">Binding error rate</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>End-to-end Gemini</td>\n<td style=\"text-align:right\">149/250 (59.6%)</td>\n<td style=\"text-align:right\">40.4%</td>\n</tr>\n<tr>\n<td>Ours</td>\n<td style=\"text-align:right\">208/250 (83.2%)</td>\n<td style=\"text-align:right\">16.8%</td>\n</tr>\n</tbody>\n</table>\n",
+      "csv": "data/binding-audit.csv",
+      "code": "E2",
+      "context": "50 clips × 5 annotations per pipeline. A pass requires all dialogue and actions to be assigned correctly."
+    },
+    "e3": {
+      "label": "Annotation WER by ASR setting",
+      "kind": "table",
+      "html": "<table>\n<thead>\n<tr>\n<th>Gemini 3.5 Flash annotation setting</th>\n<th style=\"text-align:right\">Mean WER</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>End-to-end</td>\n<td style=\"text-align:right\">0.14</td>\n</tr>\n<tr>\n<td>Qwen3-ASR priors</td>\n<td style=\"text-align:right\">0.06</td>\n</tr>\n<tr>\n<td>Whisper large priors [9]</td>\n<td style=\"text-align:right\">0.05</td>\n</tr>\n</tbody>\n</table>\n",
+      "csv": "data/asr-wer.csv",
+      "code": "E3",
+      "context": "WER of final annotations, averaged over five runs against manual transcripts. Lower is better."
+    },
+    "e4": {
+      "label": "Valid and skipped ratings",
+      "kind": "table",
+      "html": "<table>\n<thead>\n<tr>\n<th>Criterion</th>\n<th style=\"text-align:right\">Valid ratings</th>\n<th style=\"text-align:right\">Skips</th>\n<th style=\"text-align:right\">Skip rate</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Action</td>\n<td style=\"text-align:right\">2,386</td>\n<td style=\"text-align:right\">6</td>\n<td style=\"text-align:right\">0.25%</td>\n</tr>\n<tr>\n<td>Dialogue</td>\n<td style=\"text-align:right\">1,817</td>\n<td style=\"text-align:right\">104</td>\n<td style=\"text-align:right\">5.41%</td>\n</tr>\n<tr>\n<td>Audio</td>\n<td style=\"text-align:right\">2,386</td>\n<td style=\"text-align:right\">6</td>\n<td style=\"text-align:right\">0.25%</td>\n</tr>\n</tbody>\n</table>\n",
+      "csv": "data/skipped-ratings.csv",
+      "code": "E4",
+      "context": "Skip rate = skips / (valid ratings + skips). Inapplicable ratings are excluded."
+    },
+    "e5": {
+      "label": "32 MovieNet-listed works",
+      "kind": "table",
+      "html": "<table>\n<thead>\n<tr>\n<th>Film</th>\n<th>IMDb ID</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>The Band Wagon</td>\n<td>tt0045537</td>\n</tr>\n<tr>\n<td>East of Eden</td>\n<td>tt0048028</td>\n</tr>\n<tr>\n<td>The Seven Year Itch</td>\n<td>tt0048605</td>\n</tr>\n<tr>\n<td>Rear Window</td>\n<td>tt0047396</td>\n</tr>\n<tr>\n<td>The Man Who Knew Too Much</td>\n<td>tt0049470</td>\n</tr>\n<tr>\n<td>The Searchers</td>\n<td>tt0049730</td>\n</tr>\n<tr>\n<td>The Ten Commandments</td>\n<td>tt0049833</td>\n</tr>\n<tr>\n<td>Mon Oncle</td>\n<td>tt0050706</td>\n</tr>\n<tr>\n<td>Vertigo</td>\n<td>tt0052357</td>\n</tr>\n<tr>\n<td>North by Northwest</td>\n<td>tt0053125</td>\n</tr>\n<tr>\n<td>Rio Bravo</td>\n<td>tt0053221</td>\n</tr>\n<tr>\n<td>Late Autumn</td>\n<td>tt0053579</td>\n</tr>\n<tr>\n<td>Peeping Tom</td>\n<td>tt0054167</td>\n</tr>\n<tr>\n<td>The Birds</td>\n<td>tt0056869</td>\n</tr>\n<tr>\n<td>Charade</td>\n<td>tt0056923</td>\n</tr>\n<tr>\n<td>The Great Escape</td>\n<td>tt0057115</td>\n</tr>\n<tr>\n<td>Mary Poppins</td>\n<td>tt0058331</td>\n</tr>\n<tr>\n<td>A Fistful of Dollars</td>\n<td>tt0058461</td>\n</tr>\n<tr>\n<td>The Collector</td>\n<td>tt0059043</td>\n</tr>\n<tr>\n<td>Pierrot le fou</td>\n<td>tt0059592</td>\n</tr>\n<tr>\n<td>The Graduate</td>\n<td>tt0061722</td>\n</tr>\n<tr>\n<td>In the Heat of the Night</td>\n<td>tt0061811</td>\n</tr>\n<tr>\n<td>2001: A Space Odyssey</td>\n<td>tt0062622</td>\n</tr>\n<tr>\n<td>Planet of the Apes</td>\n<td>tt0063442</td>\n</tr>\n<tr>\n<td>Army of Shadows</td>\n<td>tt0064040</td>\n</tr>\n<tr>\n<td>Butch Cassidy and the Sundance Kid</td>\n<td>tt0064115</td>\n</tr>\n<tr>\n<td>Easy Rider</td>\n<td>tt0064276</td>\n</tr>\n<tr>\n<td>The Wild Bunch</td>\n<td>tt0065214</td>\n</tr>\n<tr>\n<td>Jaws</td>\n<td>tt0073195</td>\n</tr>\n<tr>\n<td>Rocky</td>\n<td>tt0075148</td>\n</tr>\n<tr>\n<td>Star Wars: Episode V - The Empire Strikes Back</td>\n<td>tt0080684</td>\n</tr>\n<tr>\n<td>The Terminator</td>\n<td>tt0088247</td>\n</tr>\n</tbody>\n</table>\n",
+      "csv": "data/movienet-sources.csv",
+      "code": "E5",
+      "context": "MovieNet-listed works used in the source collection."
+    },
+    "e6": {
+      "label": "17 Creative Commons works",
+      "kind": "table",
+      "html": "<table>\n<thead>\n<tr>\n<th>Work</th>\n<th>Public access page</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Valkaama</td>\n<td><a href=\"https://www.valkaama.com/index.php?page=valkaama\">Creator page</a></td>\n</tr>\n<tr>\n<td>Elephants Dream</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:Elephants_Dream_%282006%29_1080p24.webm\">File page</a></td>\n</tr>\n<tr>\n<td>Big Buck Bunny</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:Big_Buck_Bunny_4K.webm\">File page</a></td>\n</tr>\n<tr>\n<td>Sintel</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:Sintel_movie_4K.webm\">File page</a></td>\n</tr>\n<tr>\n<td>Tears of Steel</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:Tears_of_Steel_in_4k_-_Official_Blender_Foundation_release.webm\">File page</a></td>\n</tr>\n<tr>\n<td>Caminandes: Llama Drama</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:Caminandes-_Llama_Drama_-_Short_Movie.ogv\">File page</a></td>\n</tr>\n<tr>\n<td>Caminandes: Gran Dillama</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:Caminandes,_Gran_Dillama_-_Blender_Foundation.webm\">File page</a></td>\n</tr>\n<tr>\n<td>Cosmos Laundromat: First Cycle</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:Cosmos_Laundromat_-_First_Cycle_-_Official_Blender_Foundation_release.webm\">File page</a></td>\n</tr>\n<tr>\n<td>Glass Half</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:Glass_Half_-_Blender_Open_Movie-full_movie.webm\">File page</a></td>\n</tr>\n<tr>\n<td>Caminandes: Llamigos</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm\">File page</a></td>\n</tr>\n<tr>\n<td>The Daily Dweebs</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:The_Daily_Dweebs_-_Blender_Open_Movie-full_movie.webm\">File page</a></td>\n</tr>\n<tr>\n<td>Hero</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:HERO_-_Blender_Open_Movie-full_movie.webm\">File page</a></td>\n</tr>\n<tr>\n<td>Spring</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:Spring_-_Blender_Open_Movie.webm\">File page</a></td>\n</tr>\n<tr>\n<td>Coffee Run</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:Coffee_Run_-_Blender_Open_Movie-full_movie.webm\">File page</a></td>\n</tr>\n<tr>\n<td>Sprite Fright</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:Sprite_Fright_-_Blender_Open_Movie-full_movie.webm\">File page</a></td>\n</tr>\n<tr>\n<td>Charge</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:Charge_-_Blender_Open_Movie-full_movie.webm\">File page</a></td>\n</tr>\n<tr>\n<td>Wing It!</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:WING_IT!_-_Blender_Open_Movie-full_movie.webm\">File page</a></td>\n</tr>\n</tbody>\n</table>\n",
+      "csv": "data/cc-sources.csv",
+      "code": "E6",
+      "context": "17 works from the additional source collection."
+    },
+    "e7": {
+      "label": "8 public-domain works",
+      "kind": "table",
+      "html": "<table>\n<thead>\n<tr>\n<th>Work</th>\n<th>Public access page</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>The Hitch-Hiker</td>\n<td><a href=\"https://archive.org/details/Hitch_Hiker\">Archive page</a></td>\n</tr>\n<tr>\n<td>The Middleton Family at the New York World's Fair</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:The_Middleton_Family_at_the_New_York_World%27s_Fair.webm\">File page</a></td>\n</tr>\n<tr>\n<td>Modesta</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:Modesta.webm\">File page</a></td>\n</tr>\n<tr>\n<td>The Memphis Belle: A Story of a Flying Fortress</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:The_Memphis_Belle_-_A_Story_of_a_Flying_Fortress.webm\">File page</a></td>\n</tr>\n<tr>\n<td>The House I Live In</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:The_House_I_Live_In_%281945%29.webm\">File page</a></td>\n</tr>\n<tr>\n<td>Master Hands</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:Master_Hands.webm\">File page</a></td>\n</tr>\n<tr>\n<td>Duck and Cover</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:Duck_and_Cover_1440_x_1080_01836081.webm\">File page</a></td>\n</tr>\n<tr>\n<td>Under Western Stars</td>\n<td><a href=\"https://commons.wikimedia.org/wiki/File:Under_Western_Stars_%281938%29.webm\">File page</a></td>\n</tr>\n</tbody>\n</table>\n",
+      "csv": "data/archive-sources.csv",
+      "code": "E7",
+      "context": "8 works from the additional source collection."
+    },
+    "e8": {
+      "kind": "table",
+      "label": "Character-binding test",
+      "csv": "data/binding-test.csv",
+      "html": "<table>\n<thead>\n<tr>\n<th>Method</th>\n<th>Binding accuracy (%) ↑</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>LTX-2.3</td>\n<td>55.0</td>\n</tr>\n<tr>\n<td>Ours</td>\n<td>77.5</td>\n</tr>\n</tbody>\n</table>\n",
+      "code": "E8",
+      "context": "Dedicated 40-video binding test. Higher is better."
+    },
+    "e9": {
+      "label": "Non-human characters",
+      "kind": "videos",
+      "groups": [
+        {
+          "id": "nonhuman-comparison",
+          "code": "Video E9",
+          "title": "An exchange in the ice cave",
+          "description": "Watch which character exits: the orange puppet should leave; the blue puppet should remain.",
+          "videos": [
+            {
+              "src": "assets/videos/nonhuman-ours.mp4",
+              "poster": "assets/posters/nonhuman-ours.jpg",
+              "duration": 11.375,
+              "label": "Ours",
+              "prompt": "Structured Description:\n    [SCENE]\n        dimly lit icy cave; blue ice formations, snow; medium close-up\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>3</count>\n        <first>\n            <appearance>orange puppet with purple hair, purple scarf, yellow-purple striped sleeves, backpack</appearance>\n            <posture>standing upright</posture>\n            <frame_position>frame-left</frame_position>\n            <actions>faces right, looking at the blue puppet</actions>\n        </first>\n        <second>\n            <appearance>green puppet with yellow hair, red earmuffs, green sweater</appearance>\n            <posture>standing upright</posture>\n            <frame_position>frame-center</frame_position>\n            <actions>faces right, looking at the blue puppet</actions>\n        </second>\n        <third>\n            <appearance>blue puppet with light blue hair, tunic with ruffled edges</appearance>\n            <posture>standing upright</posture>\n            <frame_position>frame-right</frame_position>\n            <actions>turns head left and right, speaking to the other puppets</actions>\n        </third>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <dialogue>\n                <voice>adult female, slightly annoyed and questioning</voice>\n                <character_id>speaker_1: orange puppet with purple hair</character_id>\n                <words: English>Hey, how come you didn't wait for me?</words>\n            </dialogue>\n            <event>speaker_1 speaks while looking at speaker_3</event>\n            <lighting>cool blue ambient light with soft shadows</lighting>\n            <camera_motion>The camera holds a static shot on the three puppets.</camera_motion>\n        </first>\n        <second>\n            <dialogue>\n                <voice>adult male, raspy and dismissive</voice>\n                <character_id>speaker_3: blue puppet with light blue hair</character_id>\n                <words: English>Well, if you're gonna walk slow, don't walk when I see Joe.</words>\n            </dialogue>\n            <event>speaker_3 turns his head to speak to speaker_1 and speaker_2</event>\n            <lighting>unchanged cool blue lighting</lighting>\n            <camera_motion>The camera holds a static shot.</camera_motion>\n        </second>\n        <third>\n            <dialogue>\n                <voice>adult male, raspy and excited</voice>\n                <character_id>speaker_3: blue puppet with light blue hair</character_id>\n                <words: English>Oh, I like that, Flomo.</words>\n            </dialogue>\n            <event>speaker_3 turns forward and speaks excitedly as speaker_1 exits frame-left</event>\n            <lighting>unchanged cool blue lighting</lighting>\n            <camera_motion>The camera holds a static shot.</camera_motion>\n        </third>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        raspy male and clear female puppet voices, soft cave ambience\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"people\", \"indoor\", \"other\"][END_SUBJECT]\n    [ATMOSPHERE]\"playful, whimsical, fantasy\"[END_ATMOSPHERE]"
+            },
+            {
+              "src": "assets/videos/nonhuman-ltx23.mp4",
+              "poster": "assets/posters/nonhuman-ltx23.jpg",
+              "duration": 11.375,
+              "label": "LTX-2.3",
+              "prompt": "A medium close-up in a dimly lit icy cave frames three upright puppets against blue ice formations and snow, with the orange puppet with purple hair, a purple scarf, yellow-and-purple striped sleeves, and a backpack standing frame-left facing right; the green puppet with yellow hair, red earmuffs, and a green sweater standing frame-center facing right; and the blue puppet with light blue hair and a ruffled tunic standing frame-right, turning his head left and right. The camera holds a static shot on the three puppets under cool blue ambient light with soft shadows. The orange puppet, in a slightly annoyed, questioning adult female voice, says, \"Hey, how come you didn't wait for me?\" The blue puppet, in a raspy, dismissive adult male voice, replies, \"Well, if you're gonna walk slow, don't walk when I see Joe.\" Then, turning forward excitedly as the orange puppet exits frame-left, he adds in a raspy, excited adult male voice, \"Oh, I like that, Flomo.\" Raspy male and clear female puppet voices sit over soft cave ambience, keeping the scene playful, whimsical, and fantastical."
+            }
+          ],
+          "conditions": [
+            "Matched first frame"
+          ]
+        }
+      ],
+      "code": "E9"
+    },
+    "e10": {
+      "label": "Partially off-screen characters",
+      "kind": "videos",
+      "groups": [
+        {
+          "id": "partially-offscreen-comparison",
+          "code": "Video E10 · Case 1",
+          "title": "Only the cropped left fighter should straighten",
+          "description": "Only the cropped fighter on the left should straighten; her partner should remain bowed.",
+          "videos": [
+            {
+              "src": "assets/videos/partially-offscreen-ours.mp4",
+              "poster": "assets/posters/partially-offscreen-ours.jpg",
+              "duration": 8.0,
+              "label": "Ours",
+              "prompt": "Structured Description:\n    [SCENE]\n        fixed side view of two bowed fighters on a pink mat; the frame cuts through the body of the left fighter; a referee is between them\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>3</count>\n        <first>\n            <appearance>braided-haired fighter in dark athletic wear, partly outside the frame</appearance>\n            <posture>bowed in profile</posture>\n            <frame_position>extreme left</frame_position>\n            <actions>straightens and raises both fists in guard</actions>\n        </first>\n        <second>\n            <appearance>referee in dark clothes and cap</appearance>\n            <posture>standing</posture>\n            <frame_position>center</frame_position>\n            <actions>watches with hands down</actions>\n        </second>\n        <third>\n            <appearance>barefoot fighter with an ash-blond ponytail and dark athletic wear</appearance>\n            <posture>bowing toward her partner</posture>\n            <frame_position>right</frame_position>\n            <actions>stays bent forward with her hands low</actions>\n        </third>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>The partly cropped left fighter straightens in place and brings both fists up to guard in the visible space. She remains partly cut off at the left edge, looking toward the other fighter. The right fighter stays bowed with her hands down; the referee stays in place.</event>\n            <lighting>unchanged from the conditioning frame</lighting>\n            <camera_motion>The camera holds the original framing in one continuous static shot.</camera_motion>\n        </first>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        quiet room tone and a soft shuffle, without dialogue or music\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"people\", \"character interaction\"][END_SUBJECT]\n    [ATMOSPHERE]\"natural, focused\"[END_ATMOSPHERE]\n"
+            },
+            {
+              "src": "assets/videos/partially-offscreen-ltx23.mp4",
+              "poster": "assets/posters/partially-offscreen-ltx23.jpg",
+              "duration": 8.0,
+              "label": "LTX-2.3",
+              "prompt": "A fixed wide side view holds two barefoot fighters bowing toward each other on a pink mat, with a dark-clad referee between them. The frame cuts through the body of the braided-haired fighter at the far left. Only that partly cropped left fighter straightens in place and brings both fists up to guard in the visible part of the shot. She remains partly cut off and faces her partner. The fully visible fighter on the right stays bent forward, with her hands down. The referee remains in place. Keep the framing and quiet room tone, without dialogue or music."
+            }
+          ],
+          "conditions": [
+            "Matched first frame"
+          ]
+        },
+        {
+          "id": "partially-offscreen-additional",
+          "code": "Video E10 · Case 2",
+          "title": "Only the cropped left fighter should straighten",
+          "description": "Compare the same requested action in another pair of outputs.",
+          "videos": [
+            {
+              "src": "assets/videos/partially-offscreen-additional-ours.mp4",
+              "poster": "assets/posters/partially-offscreen-additional-ours.jpg",
+              "duration": 8.0,
+              "label": "Ours",
+              "prompt": "Structured Description:\n    [SCENE]\n        fixed side view of two bowed fighters on a pink mat; the frame cuts through the body of the left fighter; a referee is between them\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>3</count>\n        <first>\n            <appearance>braided-haired fighter in dark athletic wear, partly outside the frame</appearance>\n            <posture>bowed in profile</posture>\n            <frame_position>extreme left</frame_position>\n            <actions>straightens and raises both fists in guard</actions>\n        </first>\n        <second>\n            <appearance>referee in dark clothes and cap</appearance>\n            <posture>standing</posture>\n            <frame_position>center</frame_position>\n            <actions>watches with hands down</actions>\n        </second>\n        <third>\n            <appearance>barefoot fighter with an ash-blond ponytail and dark athletic wear</appearance>\n            <posture>bowing toward her partner</posture>\n            <frame_position>right</frame_position>\n            <actions>stays bent forward with her hands low</actions>\n        </third>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>The partly cropped left fighter straightens in place and brings both fists up to guard in the visible space. She remains partly cut off at the left edge, looking toward the other fighter. The right fighter stays bowed with her hands down; the referee stays in place.</event>\n            <lighting>unchanged from the conditioning frame</lighting>\n            <camera_motion>The camera holds the original framing in one continuous static shot.</camera_motion>\n        </first>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        quiet room tone and a soft shuffle, without dialogue or music\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"people\", \"character interaction\"][END_SUBJECT]\n    [ATMOSPHERE]\"natural, focused\"[END_ATMOSPHERE]\n"
+            },
+            {
+              "src": "assets/videos/partially-offscreen-additional-ltx23.mp4",
+              "poster": "assets/posters/partially-offscreen-additional-ltx23.jpg",
+              "duration": 8.0,
+              "label": "LTX-2.3",
+              "prompt": "A fixed wide side view holds two barefoot fighters bowing toward each other on a pink mat, with a dark-clad referee between them. The frame cuts through the body of the braided-haired fighter at the far left. Only that partly cropped left fighter straightens in place and brings both fists up to guard in the visible part of the shot. She remains partly cut off and faces her partner. The fully visible fighter on the right stays bent forward, with her hands down. The referee remains in place. Keep the framing and quiet room tone, without dialogue or music."
+            }
+          ],
+          "conditions": [
+            "Matched first frame",
+            "8 seconds"
+          ],
+          "folded": "Another output pair"
+        }
+      ],
+      "code": "E10"
+    },
+    "e11": {
+      "label": "Occluded characters",
+      "kind": "videos",
+      "groups": [
+        {
+          "id": "occluded-comparison",
+          "code": "Video E11 · Case 1",
+          "title": "Only the partly hidden diner should raise his glass",
+          "description": "Only the partly hidden uniformed diner should raise his glass.",
+          "videos": [
+            {
+              "src": "assets/videos/occluded-ours.mp4",
+              "poster": "assets/posters/occluded-ours.jpg",
+              "duration": 8.0,
+              "label": "Ours",
+              "prompt": "Structured Description:\n    [SCENE]\n        six diners at a wooden table in a warm dim room; fixed medium shot; the back of the foreground diner partly hides the second uniformed man\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>6</count>\n        <first>\n            <appearance>man in a dark military uniform closest to the left border</appearance>\n            <posture>seated looking down</posture>\n            <frame_position>far left foreground</frame_position>\n            <actions>keeps his hands low</actions>\n        </first>\n        <second>\n            <appearance>second uniformed man, partly hidden behind the foreground chair and its occupant</appearance>\n            <posture>seated</posture>\n            <frame_position>left rear</frame_position>\n            <actions>raises his glass for a toast, then lowers it</actions>\n        </second>\n        <third>\n            <appearance>dark-haired man whose back faces the camera</appearance>\n            <posture>seated in front of the table</posture>\n            <frame_position>center foreground</frame_position>\n            <actions>stays in place</actions>\n        </third>\n        <fourth>\n            <appearance>woman in a black dress with white circles</appearance>\n            <posture>seated</posture>\n            <frame_position>rear center</frame_position>\n            <actions>keeps her hands low</actions>\n        </fourth>\n        <fifth>\n            <appearance>man in a brown suit and tie</appearance>\n            <posture>seated</posture>\n            <frame_position>inner right</frame_position>\n            <actions>keeps his hands low</actions>\n        </fifth>\n        <sixth>\n            <appearance>older gray-haired man in a gray suit</appearance>\n            <posture>seated</posture>\n            <frame_position>outer right</frame_position>\n            <actions>keeps his cup low</actions>\n        </sixth>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>The partly hidden second uniformed man lifts his own drinking glass up beside his face in a toast, then sets it down. The nearest uniformed man at far left and the other diners keep their glasses on the table. They all remain seated and the foreground chair stays in place.</event>\n            <lighting>unchanged from the conditioning frame</lighting>\n            <camera_motion>The camera holds the original framing in one continuous static shot.</camera_motion>\n        </first>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        quiet dining room, light fabric movement, no speech or music\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"people\", \"character interaction\"][END_SUBJECT]\n    [ATMOSPHERE]\"natural, focused\"[END_ATMOSPHERE]\n"
+            },
+            {
+              "src": "assets/videos/occluded-ltx23.mp4",
+              "poster": "assets/posters/occluded-ltx23.jpg",
+              "duration": 8.0,
+              "label": "LTX-2.3",
+              "prompt": "A fixed view shows six diners seated around a wooden table in a warm, dim dining room. At far left the nearest uniformed man sits with his hands low. The second uniformed man just to his right sits farther back, partly hidden by the large chair and its back-facing occupant in the foreground. Only that partly hidden rear uniformed man raises his own drinking glass beside his face in a toast, then sets it down. The nearest man at far left and the other diners do not raise their glasses. Everyone stays seated and the foreground chair remains in place. Quiet dining room ambience, no speech or music."
+            }
+          ],
+          "conditions": [
+            "Matched first frame"
+          ]
+        },
+        {
+          "id": "occluded-additional",
+          "code": "Video E11 · Case 2",
+          "title": "Only the partly hidden diner should raise his glass",
+          "description": "Compare which diner raises a glass in another pair of outputs.",
+          "videos": [
+            {
+              "src": "assets/videos/occluded-additional-ours.mp4",
+              "poster": "assets/posters/occluded-additional-ours.jpg",
+              "duration": 8.0,
+              "label": "Ours",
+              "prompt": "Structured Description:\n    [SCENE]\n        six diners at a wooden table in a warm dim room; fixed medium shot; the back of the foreground diner partly hides the second uniformed man\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>6</count>\n        <first>\n            <appearance>man in a dark military uniform closest to the left border</appearance>\n            <posture>seated looking down</posture>\n            <frame_position>far left foreground</frame_position>\n            <actions>keeps his hands low</actions>\n        </first>\n        <second>\n            <appearance>second uniformed man, partly hidden behind the foreground chair and its occupant</appearance>\n            <posture>seated</posture>\n            <frame_position>left rear</frame_position>\n            <actions>raises his glass for a toast, then lowers it</actions>\n        </second>\n        <third>\n            <appearance>dark-haired man whose back faces the camera</appearance>\n            <posture>seated in front of the table</posture>\n            <frame_position>center foreground</frame_position>\n            <actions>stays in place</actions>\n        </third>\n        <fourth>\n            <appearance>woman in a black dress with white circles</appearance>\n            <posture>seated</posture>\n            <frame_position>rear center</frame_position>\n            <actions>keeps her hands low</actions>\n        </fourth>\n        <fifth>\n            <appearance>man in a brown suit and tie</appearance>\n            <posture>seated</posture>\n            <frame_position>inner right</frame_position>\n            <actions>keeps his hands low</actions>\n        </fifth>\n        <sixth>\n            <appearance>older gray-haired man in a gray suit</appearance>\n            <posture>seated</posture>\n            <frame_position>outer right</frame_position>\n            <actions>keeps his cup low</actions>\n        </sixth>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>The partly hidden second uniformed man lifts his own drinking glass up beside his face in a toast, then sets it down. The nearest uniformed man at far left and the other diners keep their glasses on the table. They all remain seated and the foreground chair stays in place.</event>\n            <lighting>unchanged from the conditioning frame</lighting>\n            <camera_motion>The camera holds the original framing in one continuous static shot.</camera_motion>\n        </first>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        quiet dining room, light fabric movement, no speech or music\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"people\", \"character interaction\"][END_SUBJECT]\n    [ATMOSPHERE]\"natural, focused\"[END_ATMOSPHERE]\n"
+            },
+            {
+              "src": "assets/videos/occluded-additional-ltx23.mp4",
+              "poster": "assets/posters/occluded-additional-ltx23.jpg",
+              "duration": 8.0,
+              "label": "LTX-2.3",
+              "prompt": "A fixed view shows six diners seated around a wooden table in a warm, dim dining room. At far left the nearest uniformed man sits with his hands low. The second uniformed man just to his right sits farther back, partly hidden by the large chair and its back-facing occupant in the foreground. Only that partly hidden rear uniformed man raises his own drinking glass beside his face in a toast, then sets it down. The nearest man at far left and the other diners do not raise their glasses. Everyone stays seated and the foreground chair remains in place. Quiet dining room ambience, no speech or music."
+            }
+          ],
+          "conditions": [
+            "Matched first frame",
+            "8 seconds"
+          ],
+          "folded": "Another output pair"
+        }
+      ],
+      "code": "E11"
+    },
+    "e12": {
+      "label": "Characters without a frontal view",
+      "kind": "videos",
+      "groups": [
+        {
+          "id": "no-frontal-comparison",
+          "code": "Video E12 · Case 1",
+          "title": "Only the man in white should wave",
+          "description": "Only the man in white should wave; the woman should keep her hands down.",
+          "videos": [
+            {
+              "src": "assets/videos/no-frontal-ours.mp4",
+              "poster": "assets/posters/no-frontal-ours.jpg",
+              "duration": 8.0,
+              "label": "Ours",
+              "prompt": "Structured Description:\n    [SCENE]\n        a grassy outdoor path in daylight; follow the two people from behind\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>2</count>\n        <first>\n            <appearance>man in white sleeveless shirt</appearance>\n            <posture>walking away from camera</posture>\n            <frame_position>same side as the first frame</frame_position>\n            <actions>raises one arm overhead</actions>\n        </first>\n        <second>\n            <appearance>woman in pink short-sleeve shirt carrying a bottle</appearance>\n            <posture>walking away from camera</posture>\n            <frame_position>beside the man</frame_position>\n            <actions>keeps her hands down</actions>\n        </second>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>While both continue walking away, only the man in white lifts an open hand above his shoulder and waves once, then lowers it. The woman in pink keeps the bottle down and does not lift an arm. Neither person turns to the camera.</event>\n            <lighting>unchanged from the conditioning frame</lighting>\n            <camera_motion>A smooth follow shot from behind keeps both upper bodies in frame.</camera_motion>\n        </first>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        light footsteps and outdoor ambience; no speech\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"people\", \"character interaction\"][END_SUBJECT]\n    [ATMOSPHERE]\"natural, focused\"[END_ATMOSPHERE]\n"
+            },
+            {
+              "src": "assets/videos/no-frontal-ltx23.mp4",
+              "poster": "assets/posters/no-frontal-ltx23.jpg",
+              "duration": 8.0,
+              "label": "LTX-2.3",
+              "prompt": "A daylight follow shot looks from behind at two people walking along a grassy path. Keep the man in a white sleeveless shirt and the woman in a pink short-sleeve shirt with her bottle on their original sides. While both walk forward, the man in white lifts one open hand above his shoulder, waves once, and returns that hand to his side. The woman in pink continues walking with her bottle down and does not lift an arm. Both remain back-facing throughout. Keep the original pace, natural daylight, and quiet sound of footsteps and outdoor air."
+            }
+          ],
+          "conditions": [
+            "Matched first frame"
+          ]
+        },
+        {
+          "id": "no-frontal-additional",
+          "code": "Video E12 · Case 2",
+          "title": "Only the man in white should wave",
+          "description": "Compare the same requested action in another pair of outputs.",
+          "videos": [
+            {
+              "src": "assets/videos/no-frontal-additional-ours.mp4",
+              "poster": "assets/posters/no-frontal-additional-ours.jpg",
+              "duration": 8.0,
+              "label": "Ours",
+              "prompt": "Structured Description:\n    [SCENE]\n        a grassy outdoor path in daylight; follow the two people from behind\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>2</count>\n        <first>\n            <appearance>man in white sleeveless shirt</appearance>\n            <posture>walking away from camera</posture>\n            <frame_position>same side as the first frame</frame_position>\n            <actions>raises one arm overhead</actions>\n        </first>\n        <second>\n            <appearance>woman in pink short-sleeve shirt carrying a bottle</appearance>\n            <posture>walking away from camera</posture>\n            <frame_position>beside the man</frame_position>\n            <actions>keeps her hands down</actions>\n        </second>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>While both continue walking away, only the man in white lifts an open hand above his shoulder and waves once, then lowers it. The woman in pink keeps the bottle down and does not lift an arm. Neither person turns to the camera.</event>\n            <lighting>unchanged from the conditioning frame</lighting>\n            <camera_motion>A smooth follow shot from behind keeps both upper bodies in frame.</camera_motion>\n        </first>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        light footsteps and outdoor ambience; no speech\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"people\", \"character interaction\"][END_SUBJECT]\n    [ATMOSPHERE]\"natural, focused\"[END_ATMOSPHERE]\n"
+            },
+            {
+              "src": "assets/videos/no-frontal-additional-ltx23.mp4",
+              "poster": "assets/posters/no-frontal-additional-ltx23.jpg",
+              "duration": 8.0,
+              "label": "LTX-2.3",
+              "prompt": "A daylight follow shot looks from behind at two people walking along a grassy path. Keep the man in a white sleeveless shirt and the woman in a pink short-sleeve shirt with her bottle on their original sides. While both walk forward, the man in white lifts one open hand above his shoulder, waves once, and returns that hand to his side. The woman in pink continues walking with her bottle down and does not lift an arm. Both remain back-facing throughout. Keep the original pace, natural daylight, and quiet sound of footsteps and outdoor air."
+            }
+          ],
+          "conditions": [
+            "Matched first frame",
+            "8 seconds"
+          ],
+          "folded": "Another output pair"
+        }
+      ],
+      "code": "E12"
+    },
+    "e13": {
+      "label": "Changing the speaker",
+      "kind": "videos",
+      "groups": [
+        {
+          "id": "speaker",
+          "code": "Video E13",
+          "title": "The same line, a different speaker",
+          "description": "The same line, “I found the key,” is assigned to different speakers.",
+          "videos": [
+            {
+              "src": "assets/videos/speaker-1.mp4",
+              "poster": "assets/posters/speaker-1.jpg",
+              "duration": 8.0,
+              "label": "A · Blindfolded woman",
+              "prompt": "Structured Description:\n    [SCENE]\n        dimly lit indoor room; warm ambient light; medium shot; Keep the original camera framing, character appearances and positions. No cuts, no reframing, no added characters. Any mask or blindfold remains in place. Fixed identities: speaker_1 is the blindfolded woman at frame-left with a calm adult female voice; speaker_2 is the man in the red palm-tree shirt at frame-right with a low adult male voice. The woman keeps her blindfold on. Only the assigned character says the line.\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>2</count>\n        <first>\n            <appearance>woman with brown hair wearing a blindfold featuring tropical birds and flowers, colorful strapless top</appearance>\n            <posture>standing, initially with arms crossed</posture>\n            <frame_position>frame-left</frame_position>\n            <actions>keeps the original position and appearance and follows only the ordered event sequence</actions>\n        </first>\n        <second>\n            <appearance>man with dark hair wearing a red short-sleeve shirt with white palm tree patterns</appearance>\n            <posture>standing beside the woman</posture>\n            <frame_position>frame-right</frame_position>\n            <actions>keeps the original position and appearance and follows only the ordered event sequence</actions>\n        </second>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <dialogue>\n                <voice>use the fixed voice for the assigned character specified in the scene</voice>\n                <character_id>speaker_1: blindfolded woman at frame-left</character_id>\n                <words: English>I found the key.</words>\n            </dialogue>\n            <event>speaker_1 delivers the complete line once while all other characters remain silent and listen. Preserve the original view and any face covering.</event>\n            <lighting>unchanged from the conditioning image</lighting>\n            <camera_motion>The camera remains static in the original composition.</camera_motion>\n        </first>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        quiet room ambience; exactly one English line in the fixed voice of the assigned character\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"character interaction\"][END_SUBJECT]\n    [ATMOSPHERE]\"controlled, quiet\"[END_ATMOSPHERE]"
+            },
+            {
+              "src": "assets/videos/speaker-2.mp4",
+              "poster": "assets/posters/speaker-2.jpg",
+              "duration": 8.0,
+              "label": "B · Man in red",
+              "prompt": "Structured Description:\n    [SCENE]\n        dimly lit indoor room; warm ambient light; medium shot; Keep the original camera framing, character appearances and positions. No cuts, no reframing, no added characters. Any mask or blindfold remains in place. Fixed identities: speaker_1 is the blindfolded woman at frame-left with a calm adult female voice; speaker_2 is the man in the red palm-tree shirt at frame-right with a low adult male voice. The woman keeps her blindfold on. Only the assigned character says the line.\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>2</count>\n        <first>\n            <appearance>woman with brown hair wearing a blindfold featuring tropical birds and flowers, colorful strapless top</appearance>\n            <posture>standing, initially with arms crossed</posture>\n            <frame_position>frame-left</frame_position>\n            <actions>keeps the original position and appearance and follows only the ordered event sequence</actions>\n        </first>\n        <second>\n            <appearance>man with dark hair wearing a red short-sleeve shirt with white palm tree patterns</appearance>\n            <posture>standing beside the woman</posture>\n            <frame_position>frame-right</frame_position>\n            <actions>keeps the original position and appearance and follows only the ordered event sequence</actions>\n        </second>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <dialogue>\n                <voice>use the fixed voice for the assigned character specified in the scene</voice>\n                <character_id>speaker_2: man in the red palm-tree shirt at frame-right</character_id>\n                <words: English>I found the key.</words>\n            </dialogue>\n            <event>speaker_2 delivers the complete line once while all other characters remain silent and listen. Preserve the original view and any face covering.</event>\n            <lighting>unchanged from the conditioning image</lighting>\n            <camera_motion>The camera remains static in the original composition.</camera_motion>\n        </first>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        quiet room ambience; exactly one English line in the fixed voice of the assigned character\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"character interaction\"][END_SUBJECT]\n    [ATMOSPHERE]\"controlled, quiet\"[END_ATMOSPHERE]"
+            }
+          ],
+          "conditions": [
+            "Matched first frame and duration",
+            "One screenplay edit"
+          ]
+        }
+      ],
+      "code": "E13"
+    },
+    "e14": {
+      "label": "Reordering events",
+      "kind": "videos",
+      "groups": [
+        {
+          "id": "order",
+          "code": "Video E14",
+          "title": "The same events, a different order",
+          "description": "Compare which happens first: the woman's hand raise or the man's book lift.",
+          "videos": [
+            {
+              "src": "assets/videos/order-1.mp4",
+              "poster": "assets/posters/order-1.jpg",
+              "duration": 8.0,
+              "label": "A · Palm first",
+              "prompt": "Structured Description:\n    [SCENE]\n        warm living room; couch and coffee table, one closed book on the right; fixed wide framing\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>3</count>\n        <first>\n            <appearance>blonde woman in a white T-shirt and pink skirt beside a crutch</appearance>\n            <posture>standing</posture>\n            <frame_position>left</frame_position>\n            <actions>raises one open palm and lowers it</actions>\n        </first>\n        <second>\n            <appearance>blonde woman with an injured leg resting on a cushion</appearance>\n            <posture>seated on the couch</posture>\n            <frame_position>center</frame_position>\n            <actions>watches</actions>\n        </second>\n        <third>\n            <appearance>dark-haired man in a dark striped shirt</appearance>\n            <posture>seated beside a book on the table</posture>\n            <frame_position>right</frame_position>\n            <actions>lifts the book, then returns it</actions>\n        </third>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>The standing woman in the pink skirt raises an open palm to shoulder height and then brings her hand back down. The striped-shirt man stays seated and leaves the book in place.</event>\n            <lighting>unchanged from the conditioning frame</lighting>\n            <camera_motion>The camera holds the original framing in one continuous static shot.</camera_motion>\n        </first>\n        <second>\n            <event>The striped-shirt man lifts the book visibly off the table, then sets it back down. The standing woman keeps her hands low throughout the book movement.</event>\n            <lighting>unchanged from the conditioning frame</lighting>\n            <camera_motion>The camera holds the original framing in one continuous static shot.</camera_motion>\n        </second>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        quiet room tone, no dialogue or music\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"people\", \"character interaction\"][END_SUBJECT]\n    [ATMOSPHERE]\"natural, focused\"[END_ATMOSPHERE]\n"
+            },
+            {
+              "src": "assets/videos/order-2.mp4",
+              "poster": "assets/posters/order-2.jpg",
+              "duration": 8.0,
+              "label": "B · Book first",
+              "prompt": "Structured Description:\n    [SCENE]\n        warm living room; couch and coffee table, one closed book on the right; fixed wide framing\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>3</count>\n        <first>\n            <appearance>blonde woman in a white T-shirt and pink skirt beside a crutch</appearance>\n            <posture>standing</posture>\n            <frame_position>left</frame_position>\n            <actions>raises one open palm and lowers it</actions>\n        </first>\n        <second>\n            <appearance>blonde woman with an injured leg resting on a cushion</appearance>\n            <posture>seated on the couch</posture>\n            <frame_position>center</frame_position>\n            <actions>watches</actions>\n        </second>\n        <third>\n            <appearance>dark-haired man in a dark striped shirt</appearance>\n            <posture>seated beside a book on the table</posture>\n            <frame_position>right</frame_position>\n            <actions>lifts the book, then returns it</actions>\n        </third>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>The striped-shirt man lifts the book visibly off the table, then sets it back down. The standing woman keeps her hands low throughout the book movement.</event>\n            <lighting>unchanged from the conditioning frame</lighting>\n            <camera_motion>The camera holds the original framing in one continuous static shot.</camera_motion>\n        </first>\n        <second>\n            <event>The standing woman in the pink skirt raises an open palm to shoulder height and then brings her hand back down. The striped-shirt man stays seated and leaves the book in place.</event>\n            <lighting>unchanged from the conditioning frame</lighting>\n            <camera_motion>The camera holds the original framing in one continuous static shot.</camera_motion>\n        </second>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        quiet room tone, no dialogue or music\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"people\", \"character interaction\"][END_SUBJECT]\n    [ATMOSPHERE]\"natural, focused\"[END_ATMOSPHERE]\n"
+            }
+          ],
+          "conditions": [
+            "Matched first frame and duration",
+            "One screenplay edit"
+          ]
+        }
+      ],
+      "code": "E14"
+    },
+    "e15": {
+      "label": "Larger casts",
+      "kind": "videos",
+      "groups": [
+        {
+          "id": "choir",
+          "code": "Video E15 · Case 1",
+          "title": "A live-action choir",
+          "description": "Listen for the singers' coordinated entry.",
+          "videos": [
+            {
+              "src": "assets/videos/choir-1.mp4",
+              "poster": "assets/posters/choir-1.jpg",
+              "duration": 8.0,
+              "label": "Ours",
+              "prompt": "Structured Description:\n    [SCENE]\n        daylit music room; black grand piano, red-sweater conductor, a large choir on risers; wide shot\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>9</count>\n        <first>\n            <appearance>brown-haired woman in a red sweater</appearance>\n            <posture>standing beside the music stand</posture>\n            <frame_position>frame-left</frame_position>\n            <actions>gives a downbeat and a closing cue</actions>\n        </first>\n        <second>\n            <appearance>blonde singer in a cream jacket at the left edge of the choir</appearance>\n            <posture>standing on the choir risers</posture>\n            <frame_position>frame-left</frame_position>\n            <actions>sings and stops with the choir</actions>\n        </second>\n        <third>\n            <appearance>blonde singer in a red top near the piano</appearance>\n            <posture>standing on the choir risers</posture>\n            <frame_position>frame-left</frame_position>\n            <actions>sings and stops with the choir</actions>\n        </third>\n        <fourth>\n            <appearance>short-haired singer in a black top beside the blonde singer</appearance>\n            <posture>standing on the choir risers</posture>\n            <frame_position>frame-center</frame_position>\n            <actions>sings and stops with the choir</actions>\n        </fourth>\n        <fifth>\n            <appearance>dark-haired singer in a black shirt with a small chest crest</appearance>\n            <posture>standing on the choir risers</posture>\n            <frame_position>frame-center</frame_position>\n            <actions>sings and stops with the choir</actions>\n        </fifth>\n        <sixth>\n            <appearance>dark-haired singer in a navy V-neck beside the crest shirt</appearance>\n            <posture>standing on the choir risers</posture>\n            <frame_position>frame-center</frame_position>\n            <actions>sings and stops with the choir</actions>\n        </sixth>\n        <seventh>\n            <appearance>singer in a tan button-down near the front of the risers</appearance>\n            <posture>standing on the choir risers</posture>\n            <frame_position>frame-center</frame_position>\n            <actions>sings and stops with the choir</actions>\n        </seventh>\n        <eighth>\n            <appearance>singer in a plum top with a light headband</appearance>\n            <posture>standing on the choir risers</posture>\n            <frame_position>frame-right</frame_position>\n            <actions>sings and stops with the choir</actions>\n        </eighth>\n        <ninth>\n            <appearance>blond singer in a striped sweater near the right edge</appearance>\n            <posture>standing on the choir risers</posture>\n            <frame_position>frame-right</frame_position>\n            <actions>sings and stops with the choir</actions>\n        </ninth>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>The conductor gives a downbeat; singers across all rows sing one sustained vowel together.</event>\n            <lighting>steady daylight across the choir</lighting>\n            <camera_motion>The camera holds a static shot.</camera_motion>\n        </first>\n        <second>\n            <event>The conductor closes her hand; the whole choir releases the note together.</event>\n            <lighting>unchanged daylight</lighting>\n            <camera_motion>The camera holds a static shot.</camera_motion>\n        </second>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        blended wordless choir voices, one sustained note with a shared cutoff; quiet room ambience\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"indoor\", \"people\"][END_SUBJECT]\n    [ATMOSPHERE]\"attentive, musical\"[END_ATMOSPHERE]\n"
+            }
+          ],
+          "conditions": []
+        },
+        {
+          "id": "church-choir",
+          "code": "Video E15 · Case 2",
+          "title": "A church choir pauses and resumes",
+          "description": "Listen for the pause around 2.5–4 s and the next phrase.",
+          "videos": [
+            {
+              "src": "assets/videos/church-choir.mp4",
+              "poster": "assets/posters/church-choir.jpg",
+              "duration": 8.0,
+              "label": "Ours",
+              "prompt": "Structured Description:\n    [SCENE]\n        daylit church with more than a dozen people in two rows behind wooden pews, holding hymn sheets beside a candle; fixed wide shot\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>3</count>\n        <first>\n            <appearance>dark-haired woman in black holding a hymn sheet</appearance>\n            <posture>standing in the near row beside the candle</posture>\n            <frame_position>center</frame_position>\n            <actions>sings and breathes with the group</actions>\n        </first>\n        <second>\n            <appearance>older woman in a deep blue coat and the dark-clothed singers beside her</appearance>\n            <posture>standing in both rows</posture>\n            <frame_position>left</frame_position>\n            <actions>sing and breathe with the group</actions>\n        </second>\n        <third>\n            <appearance>men in dark suits and the remaining singers behind the candle</appearance>\n            <posture>standing in both rows</posture>\n            <frame_position>right</frame_position>\n            <actions>sing and breathe with the group</actions>\n        </third>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>Several visible singers in both rows sing the same short wordless hymn phrase together. They bring the phrase to a common stop and take a brief quiet breath without changing places.</event>\n            <lighting>unchanged from the conditioning frame</lighting>\n            <camera_motion>The camera holds the original framing in one continuous static shot.</camera_motion>\n        </first>\n        <second>\n            <event>The singers across both rows begin a second short phrase together, then end it together. They keep the sheets low enough for their faces to remain visible.</event>\n            <lighting>unchanged from the conditioning frame</lighting>\n            <camera_motion>The camera holds the original framing in one continuous static shot.</camera_motion>\n        </second>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        an unaccompanied mixed choir sings two gentle wordless phrases with a brief silent breath between them; no solo speech or instruments\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"people\", \"character interaction\"][END_SUBJECT]\n    [ATMOSPHERE]\"natural, focused\"[END_ATMOSPHERE]\n"
+            }
+          ],
+          "conditions": [
+            "8 seconds"
+          ],
+          "folded": "Another output pair"
+        }
+      ],
+      "code": "E15"
+    },
+    "e16": {
+      "label": "Martial arts",
+      "kind": "videos",
+      "groups": [
+        {
+          "id": "pad-kick",
+          "code": "Video E16 · Case 1",
+          "title": "A single kick to a training pad",
+          "description": "Watch the kick reach the pad held by the partner.",
+          "videos": [
+            {
+              "src": "assets/videos/pad-kick-1.mp4",
+              "poster": "assets/posters/pad-kick-1.jpg",
+              "duration": 5.0,
+              "label": "Ours",
+              "prompt": "Structured Description:\n    [SCENE]\n        indoor gym; yellow exercise machines, mirrors, overhead lights; wide shot\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>2</count>\n        <first>\n            <appearance>man in a dark striped shirt and black cap</appearance>\n            <posture>standing with fists raised</posture>\n            <frame_position>frame-left</frame_position>\n            <actions>kicks the pad once and returns to stance</actions>\n        </first>\n        <second>\n            <appearance>bearded man in a red and black top</appearance>\n            <posture>standing with an extended kick pad</posture>\n            <frame_position>frame-right</frame_position>\n            <actions>braces the pad for the kick</actions>\n        </second>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>The striped-shirt man lands one roundhouse kick on the raised pad, then sets his foot down.</event>\n            <lighting>steady overhead gym lights</lighting>\n            <camera_motion>The camera holds a static shot.</camera_motion>\n        </first>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        one solid thud as the foot meets the pad; quiet gym ambience; no speech\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"indoor\", \"people\", \"sports\", \"action\"][END_SUBJECT]\n    [ATMOSPHERE]\"focused, athletic\"[END_ATMOSPHERE]\n"
+            }
+          ],
+          "conditions": []
+        },
+        {
+          "id": "boxing-practice",
+          "code": "Video E16 · Case 2",
+          "title": "Boxing practice: jab and return",
+          "description": "Watch the jab and the return around 4–5 s.",
+          "videos": [
+            {
+              "src": "assets/videos/boxing-practice.mp4",
+              "poster": "assets/posters/boxing-practice.jpg",
+              "duration": 8.0,
+              "label": "Ours",
+              "prompt": "Structured Description:\n    [SCENE]\n        bright boxing gym with two barefoot sparring partners on a black mat; keep their gloves, shoulders and feet in view\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>2</count>\n        <first>\n            <appearance>woman in a black training shirt and black gloves</appearance>\n            <posture>facing her partner in guard</posture>\n            <frame_position>left</frame_position>\n            <actions>parries the man’s jab and returns a single jab</actions>\n        </first>\n        <second>\n            <appearance>man in a white training shirt and black gloves</appearance>\n            <posture>facing the woman in guard</posture>\n            <frame_position>right</frame_position>\n            <actions>throws the first jab and blocks the return</actions>\n        </second>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>They draw back from the starting glove contact into guard. The man in white throws one light straight jab. The woman in black knocks it outward with one glove.</event>\n            <lighting>unchanged from the conditioning frame</lighting>\n            <camera_motion>The camera holds the original framing in one continuous static shot.</camera_motion>\n        </first>\n        <second>\n            <event>The woman answers with a single straight jab toward the man’s raised gloves. He catches it on his guard. They each take a small step back and hold guard.</event>\n            <lighting>unchanged from the conditioning frame</lighting>\n            <camera_motion>The camera holds the original framing in one continuous static shot.</camera_motion>\n        </second>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        two soft glove taps and light footsteps on the mat; no speech or music\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"people\", \"character interaction\"][END_SUBJECT]\n    [ATMOSPHERE]\"natural, focused\"[END_ATMOSPHERE]\n"
+            }
+          ],
+          "conditions": [
+            "8 seconds"
+          ],
+          "folded": "Another output pair"
+        },
+        {
+          "id": "wooden-sword-practice",
+          "code": "Video E16 · Case 3",
+          "title": "Wooden-sword practice",
+          "description": "Watch the blades meet around 2–4 s before the partners separate.",
+          "videos": [
+            {
+              "src": "assets/videos/wooden-sword-practice.mp4",
+              "poster": "assets/posters/wooden-sword-practice.jpg",
+              "duration": 8.0,
+              "label": "Ours",
+              "prompt": "Structured Description:\n    [SCENE]\n        stone courtyard with backlit arches and two people holding wooden practice swords; fixed side-on wide shot\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>2</count>\n        <first>\n            <appearance>smaller fighter in a light top and dark skirt</appearance>\n            <posture>facing her partner with a practice sword</posture>\n            <frame_position>left</frame_position>\n            <actions>blocks the first cut and returns one short cut</actions>\n        </first>\n        <second>\n            <appearance>taller fighter in dark clothing</appearance>\n            <posture>facing the smaller fighter with a practice sword</posture>\n            <frame_position>right</frame_position>\n            <actions>cuts first and blocks the return</actions>\n        </second>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>The dark-clothed fighter on the right makes one controlled diagonal cut. The light-clothed fighter raises her wooden sword across the middle to block it. The blades meet and separate.</event>\n            <lighting>unchanged from the conditioning frame</lighting>\n            <camera_motion>The camera holds the original framing in one continuous static shot.</camera_motion>\n        </first>\n        <second>\n            <event>The light-clothed fighter returns one short cut. The dark-clothed fighter blocks with his sword. Both take a step back and hold guard, without any body contact.</event>\n            <lighting>unchanged from the conditioning frame</lighting>\n            <camera_motion>The camera holds the original framing in one continuous static shot.</camera_motion>\n        </second>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        two separated wooden clacks and light steps; no speech or music\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"people\", \"character interaction\"][END_SUBJECT]\n    [ATMOSPHERE]\"natural, focused\"[END_ATMOSPHERE]\n"
+            }
+          ],
+          "conditions": [
+            "8 seconds"
+          ],
+          "folded": "Another output pair"
+        }
+      ],
+      "code": "E16"
+    },
+    "e17": {
+      "label": "Scene categories",
+      "kind": "table",
+      "html": "<table>\n<thead>\n<tr>\n<th>Scene category</th>\n<th style=\"text-align:right\">Number of cases</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Human interactions</td>\n<td style=\"text-align:right\">31</td>\n</tr>\n<tr>\n<td>Multi-speaker voiceover / off-screen commentary</td>\n<td style=\"text-align:right\">3</td>\n</tr>\n<tr>\n<td>Cartoon character interactions</td>\n<td style=\"text-align:right\">3</td>\n</tr>\n<tr>\n<td>Animal interactions</td>\n<td style=\"text-align:right\">3</td>\n</tr>\n<tr>\n<td>Total</td>\n<td style=\"text-align:right\">40</td>\n</tr>\n</tbody>\n</table>\n",
+      "csv": "data/scene-categories.csv",
+      "code": "E17",
+      "context": "Original Director-Bench: 40 cases."
+    },
+    "e18": {
+      "label": "Dialogue turns",
+      "kind": "table",
+      "html": "<table>\n<thead>\n<tr>\n<th>Dialogue turns per case</th>\n<th style=\"text-align:right\">Number of cases</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>0 turns (actions only; no spoken dialogue)</td>\n<td style=\"text-align:right\">3</td>\n</tr>\n<tr>\n<td>1 turn (with additional silent actions)</td>\n<td style=\"text-align:right\">7</td>\n</tr>\n<tr>\n<td>2 turns</td>\n<td style=\"text-align:right\">13</td>\n</tr>\n<tr>\n<td>3 turns</td>\n<td style=\"text-align:right\">10</td>\n</tr>\n<tr>\n<td>4 turns</td>\n<td style=\"text-align:right\">4</td>\n</tr>\n<tr>\n<td>5 turns</td>\n<td style=\"text-align:right\">3</td>\n</tr>\n<tr>\n<td>Total</td>\n<td style=\"text-align:right\">40</td>\n</tr>\n</tbody>\n</table>\n",
+      "csv": "data/dialogue-turns.csv",
+      "code": "E18",
+      "context": "Original Director-Bench: 40 cases."
+    },
+    "e19": {
+      "label": "Main characters",
+      "kind": "table",
+      "html": "<table>\n<thead>\n<tr>\n<th>Main characters per case (including off-screen narrators)</th>\n<th style=\"text-align:right\">Number of cases</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>1 character</td>\n<td style=\"text-align:right\">7</td>\n</tr>\n<tr>\n<td>2 characters</td>\n<td style=\"text-align:right\">19</td>\n</tr>\n<tr>\n<td>3 characters</td>\n<td style=\"text-align:right\">5</td>\n</tr>\n<tr>\n<td>4 characters</td>\n<td style=\"text-align:right\">4</td>\n</tr>\n<tr>\n<td>5 characters</td>\n<td style=\"text-align:right\">5</td>\n</tr>\n<tr>\n<td>Total</td>\n<td style=\"text-align:right\">40</td>\n</tr>\n</tbody>\n</table>\n",
+      "csv": "data/cast-counts.csv",
+      "code": "E19",
+      "context": "Counts include off-screen narrators."
+    },
+    "e20": {
+      "label": "Dialogue languages",
+      "kind": "table",
+      "html": "<table>\n<thead>\n<tr>\n<th>Dialogue language</th>\n<th style=\"text-align:right\">Number of cases</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>English</td>\n<td style=\"text-align:right\">15</td>\n</tr>\n<tr>\n<td>Chinese</td>\n<td style=\"text-align:right\">8</td>\n</tr>\n<tr>\n<td>Japanese</td>\n<td style=\"text-align:right\">8</td>\n</tr>\n<tr>\n<td>Korean</td>\n<td style=\"text-align:right\">6</td>\n</tr>\n<tr>\n<td>No spoken dialogue</td>\n<td style=\"text-align:right\">3</td>\n</tr>\n<tr>\n<td>Total</td>\n<td style=\"text-align:right\">40</td>\n</tr>\n</tbody>\n</table>\n",
+      "csv": "data/languages.csv",
+      "code": "E20",
+      "context": "Original Director-Bench: 37 dialogue cases and 3 without dialogue."
+    },
+    "e21": {
+      "label": "Human ratings by category",
+      "kind": "table",
+      "html": "<table>\n<thead>\n<tr>\n<th>Category (cases)</th>\n<th>Method</th>\n<th style=\"text-align:right\">Action</th>\n<th style=\"text-align:right\">Dialogue</th>\n<th style=\"text-align:right\">Audio</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Animals (3)</td>\n<td>LTX-2.3</td>\n<td style=\"text-align:right\">3.32</td>\n<td style=\"text-align:right\">N/A</td>\n<td style=\"text-align:right\">3.57</td>\n</tr>\n<tr>\n<td>Animals (3)</td>\n<td>Ours</td>\n<td style=\"text-align:right\">3.88</td>\n<td style=\"text-align:right\">N/A</td>\n<td style=\"text-align:right\">4.29</td>\n</tr>\n<tr>\n<td>Cartoons (3)</td>\n<td>LTX-2.3</td>\n<td style=\"text-align:right\">3.36</td>\n<td style=\"text-align:right\">3.48</td>\n<td style=\"text-align:right\">3.51</td>\n</tr>\n<tr>\n<td>Cartoons (3)</td>\n<td>Ours</td>\n<td style=\"text-align:right\">3.92</td>\n<td style=\"text-align:right\">3.97</td>\n<td style=\"text-align:right\">4.25</td>\n</tr>\n<tr>\n<td>Voiceover (3)</td>\n<td>LTX-2.3</td>\n<td style=\"text-align:right\">3.76</td>\n<td style=\"text-align:right\">3.56</td>\n<td style=\"text-align:right\">3.99</td>\n</tr>\n<tr>\n<td>Voiceover (3)</td>\n<td>Ours</td>\n<td style=\"text-align:right\">4.05</td>\n<td style=\"text-align:right\">4.05</td>\n<td style=\"text-align:right\">4.45</td>\n</tr>\n<tr>\n<td>All nine cases</td>\n<td>LTX-2.3</td>\n<td style=\"text-align:right\">3.48</td>\n<td style=\"text-align:right\">3.52</td>\n<td style=\"text-align:right\">3.69</td>\n</tr>\n<tr>\n<td>All nine cases</td>\n<td>Ours</td>\n<td style=\"text-align:right\">3.95</td>\n<td style=\"text-align:right\">4.01</td>\n<td style=\"text-align:right\">4.33</td>\n</tr>\n</tbody>\n</table>\n",
+      "csv": "data/category-ratings.csv",
+      "code": "E21",
+      "context": "Case-averaged ratings (1–5). Action/Audio cover nine cases; Dialogue covers six. Higher is better."
+    },
+    "e22": {
+      "label": "Seminar",
+      "kind": "videos",
+      "groups": [
+        {
+          "id": "seminar-pair",
+          "code": "Video E22",
+          "title": "Seminar",
+          "description": "Compare the arm gesture with the end of the first question.",
+          "videos": [
+            {
+              "src": "assets/videos/seminar-ours.mp4",
+              "poster": "assets/posters/seminar-ours.jpg",
+              "duration": 5.042,
+              "label": "Ours",
+              "prompt": "Structured Description: [SCENE] indoor seminar room; whiteboard, flip chart, projector screen; medium shot [END_SCENE] [VISIBLE_MAIN_CHARACTER] <count>1</count> <first> <appearance>adult male with curly dark hair, wearing a brown suit and patterned tie</appearance> <posture>standing, gesturing with hands</posture> <frame_position>frame-center</frame_position> <actions>gestures toward his torso while speaking to an audience</actions> </first> [END_VISIBLE_MAIN_CHARACTER] [EVENT_SEQUENCE] <first> <dialogue> <voice>adult male, inquisitive and educational</voice> <character_id>speaker_1: man in brown suit</character_id> <words: English>Where is the diaphragm live in the body?</words> </dialogue> <event>speaker_1 holds his hands flat in front of his stomach, then looks toward the audience</event> <lighting>bright indoor overhead lighting</lighting> <camera_motion>The camera holds a static shot.</camera_motion> </first> <second> <dialogue> <voice>adult male, inquisitive and educational</voice> <character_id>speaker_1: man in brown suit</character_id> <words: English>Where is my diaphragm right?</words> </dialogue> <event>speaker_1 spreads his arms wide, then places his right hand on his abdomen</event> <lighting>steady indoor lighting</lighting> <camera_motion>The camera holds a static shot.</camera_motion> </second> [END_EVENT_SEQUENCE] [AUDIO_CAPTION] clear male speech in a quiet room with slight echo [END_AUDIO_CAPTION] [SUBJECT][\"people\", \"indoor\", \"technology\", \"buildings\"][END_SUBJECT] [ATMOSPHERE]\"educational, professional\"[END_ATMOSPHERE]"
+            },
+            {
+              "src": "assets/videos/seminar-ltx23.mp4",
+              "poster": "assets/posters/seminar-ltx23.jpg",
+              "duration": 5.042,
+              "label": "LTX-2.3",
+              "prompt": "A medium shot frames an adult male with curly dark hair, wearing a brown suit and a patterned tie, standing at frame-center in an indoor seminar room where a whiteboard, flip chart, and projector screen fill the background. He gestures toward his torso while speaking to an audience, first holding his hands flat in front of his stomach and looking outward, then spreading his arms wide before placing his right hand on his abdomen. The camera holds a static shot throughout, keeping his posture and the room's details steady under bright indoor overhead lighting that remains even and consistent. In a clear adult-male voice, inquisitive and educational, he says, \"Where is the diaphragm live in the body?\" and then, \"Where is my diaphragm right?\" His speech carries a slight echo in the quiet room, with no music or additional noise, sustaining an educational, professional atmosphere."
+            }
+          ],
+          "conditions": []
+        }
+      ],
+      "code": "E22"
+    },
+    "e23": {
+      "label": "Hallway acoustics",
+      "kind": "videos",
+      "groups": [
+        {
+          "id": "hallway-pair",
+          "code": "Video E23",
+          "title": "Hallway acoustics",
+          "description": "Listen to the corridor reverberation.",
+          "videos": [
+            {
+              "src": "assets/videos/hallway-ours.mp4",
+              "poster": "assets/posters/hallway-ours.jpg",
+              "duration": 8.384,
+              "label": "Ours",
+              "prompt": "Structured Description:\n    [SCENE]\n        dimly lit indoor hallway; warm background lights; medium shot\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>1</count>\n        <first>\n            <appearance>man with black beanie, dark jacket, full beard, facial tattoos, black gloves</appearance>\n            <posture>standing upright, then leaning forward</posture>\n            <frame_position>frame-center</frame_position>\n            <actions>holds a firearm pointed forward, turns head to face camera, lowers firearm, bends forward to manipulate firearm</actions>\n        </first>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>The man with black beanie, dark jacket, full beard, facial tattoos, black gloves holds a firearm pointed forward.</event>\n            <lighting>dim key light, warm background glow</lighting>\n            <camera_motion>The camera holds a static shot on the man.</camera_motion>\n        </first>\n        <second>\n            <dialogue>\n                <voice>adult male, low and calm</voice>\n                <character_id>speaker_1: man with black beanie, dark jacket, full beard, facial tattoos, black gloves</character_id>\n                <words: English>Thanks.</words>\n            </dialogue>\n            <event>The man turns his head to face the camera, lowers the firearm, and bends forward.</event>\n            <lighting>unchanged dim lighting</lighting>\n            <camera_motion>The camera holds a static shot.</camera_motion>\n        </second>\n        <third>\n            <dialogue>\n                <voice>off-screen male, loud and shouting</voice>\n                <character_id>speaker_2: off-screen male voice</character_id>\n                <words: English>Open up.</words>\n            </dialogue>\n            <event>The man bends forward to manipulate the firearm.</event>\n            <lighting>unchanged dim lighting</lighting>\n            <camera_motion>The camera holds a static shot.</camera_motion>\n        </third>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        muffled background shouting, metallic clicking of a firearm, low male speech\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"indoor\", \"people\", \"action\"][END_SUBJECT]\n    [ATMOSPHERE]\"tense, cinematic\"[END_ATMOSPHERE]"
+            },
+            {
+              "src": "assets/videos/hallway-ltx23.mp4",
+              "poster": "assets/posters/hallway-ltx23.jpg",
+              "duration": 8.375,
+              "label": "LTX-2.3",
+              "prompt": "A medium shot in a dimly lit indoor hallway shows a man with a full beard and facial tattoos, wearing a black beanie, a dark jacket, and black gloves, standing frame-center while holding a firearm pointed forward. He turns his head to face the camera, lowers the firearm, and bends forward to manipulate it, producing a metallic clicking sound. In a low, calm adult male voice, he says, \"Thanks.\" A loud, off-screen male voice then shouts, \"Open up,\" while muffled background shouting continues. The camera remains static throughout, holding the man in sharp focus. The lighting stays dim with a warm background glow, casting a tense, cinematic atmosphere."
+            }
+          ],
+          "conditions": []
+        }
+      ],
+      "code": "E23"
+    },
+    "e24": {
+      "label": "Training budget by phase",
+      "kind": "table",
+      "html": "<table>\n<thead>\n<tr>\n<th>Phase</th>\n<th style=\"text-align:right\">Optimizer updates</th>\n<th style=\"text-align:right\">Time/update</th>\n<th style=\"text-align:right\">Estimated hours</th>\n<th style=\"text-align:right\">H200 GPU-hours</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>1: Alignment</td>\n<td style=\"text-align:right\">8,000</td>\n<td style=\"text-align:right\">~33 s</td>\n<td style=\"text-align:right\">~73.3</td>\n<td style=\"text-align:right\">~2,347</td>\n</tr>\n<tr>\n<td>2: Adaptation</td>\n<td style=\"text-align:right\">2,000 additional</td>\n<td style=\"text-align:right\">~27 s</td>\n<td style=\"text-align:right\">~15.0</td>\n<td style=\"text-align:right\">~480</td>\n</tr>\n<tr>\n<td>Total</td>\n<td style=\"text-align:right\">10,000</td>\n<td style=\"text-align:right\">—</td>\n<td style=\"text-align:right\">~88.3</td>\n<td style=\"text-align:right\">~2,827</td>\n</tr>\n</tbody>\n</table>\n",
+      "csv": "data/training-budget.csv",
+      "code": "E24",
+      "context": "32 H200s · global batch 128 · 2,177 h. Costs estimated from time per update."
+    }
+  },
+  "legacyGroups": {}
+}

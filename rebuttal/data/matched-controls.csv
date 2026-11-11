@@ -1,0 +1,8 @@
+Setting,Steps,FID ↓,FVD ↓,ID ↑,WER ↓,Turn Sync-C ↑,Match ↑
+Native LTX-2.3,0,114.34,34.79,0.4951,0.1192,3.4091,0.7500
+"Same-data, original LTX format",8k,110.15,33.42,0.4841,0.0986,3.4278,0.7529
++ Screenplay,8k,113.27,32.55,0.4860,0.0826,3.5091,0.7672
+Frozen Gemma: image + text (Q2),8k,135.92,48.16,0.4423,0.1780,2.8322,0.7425
+"Frozen Director, Phase 1",8k,113.92,31.42,0.4975,0.0782,3.6566,0.7985
+"Frozen Director, continued",10k,116.24,33.67,0.4896,0.1089,3.4638,0.7740
+"Ours, full",10k,108.19,28.28,0.4992,0.0769,3.8979,0.8491

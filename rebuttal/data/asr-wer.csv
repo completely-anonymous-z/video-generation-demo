@@ -1,0 +1,4 @@
+Gemini 3.5 Flash annotation setting,Mean WER
+End-to-end,0.14
+Qwen3-ASR priors,0.06
+Whisper large priors [9],0.05
