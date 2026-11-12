@@ -47,6 +47,24 @@ function formatTime(value) {
   return `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
 }
 
+function renderAnnotationComparison(panels) {
+  if (!panels) return '';
+  const highlighted = (text, phrase) => {
+    const index = phrase ? text.indexOf(phrase) : -1;
+    if (index < 0) return escapeHTML(text);
+    return escapeHTML(text.slice(0, index)) + `<mark>${escapeHTML(phrase)}</mark>` + escapeHTML(text.slice(index + phrase.length));
+  };
+  return `<section class="annotation-comparison" aria-label="Gemini annotation comparison">${panels.map(panel => `
+    <section class="annotation-panel ${panel.status === 'incorrect' ? 'annotation-incorrect' : 'annotation-correct'}">
+      <h4>${escapeHTML(panel.label)}</h4>
+      <div class="annotation-turns">${panel.turns.map(turn => `
+        <div class="annotation-turn${turn.highlight ? ' has-target' : ''}">
+          <p class="annotation-speaker">${escapeHTML(turn.speaker)}</p>
+          <p class="annotation-words">${highlighted(turn.text, turn.highlight)}</p>
+        </div>`).join('')}</div>
+    </section>`).join('')}</section>`;
+}
+
 class ComparisonPlayer {
   constructor(group, host) {
     this.group = group;
@@ -60,7 +78,7 @@ class ComparisonPlayer {
     this.rate = 1;
     this.ignoreSeekUntil = 0;
     this.root = document.createElement('article');
-    this.root.className = 'video-group';
+    this.root.className = group.annotationComparison ? 'video-group annotation-group' : 'video-group';
     this.root.id = group.id;
     this.root.innerHTML = `
       <div class="video-group-heading">
@@ -85,7 +103,8 @@ class ComparisonPlayer {
         <label class="control-select">Audio<select class="audio-select" aria-label="Audio source for ${group.code}">${group.videos.map((video, i) => `<option value="${i}">${escapeHTML(video.label)}</option>`).join('')}<option value="-1">Muted</option></select></label>
         <label class="control-select">Speed<select class="speed-select" aria-label="Playback speed for ${group.code}"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option></select></label>
       </div>
-      <p class="player-status" role="status"></p>`;
+      <p class="player-status" role="status"></p>
+      ${renderAnnotationComparison(group.annotationComparison)}`;
     host.append(this.root);
     this.videos = $$('video', this.root);
     this.playButton = $('.play-button', this.root);
@@ -404,7 +423,7 @@ function bindKeyboardTabs(selector) {
 
 async function initialize() {
   try {
-    const response = await fetch('data/results.json?v=20261112-sources');
+    const response = await fetch('data/results.json?v=20261112-fps');
     if (!response.ok) throw new Error('Supplement data unavailable');
     reviewData = await response.json();
     $('.skip-link').addEventListener('click', event => {

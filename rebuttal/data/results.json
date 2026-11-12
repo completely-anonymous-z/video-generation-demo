@@ -59,6 +59,17 @@
             "e6"
           ],
           "intro": "Click a title to open the video; on Wikimedia Commons, select \"Original file\". The complete source list will accompany the code release."
+        },
+        {
+          "anchor": "ujuf-Q3",
+          "key": "Q3",
+          "title": "1 fps vs 5 fps annotation",
+          "comment": "Q3 - I understand the motivation, but I would have liked quantitative evidence comparing 5fps and 1fps variants at least.",
+          "evidence": [
+            "e25",
+            "e26"
+          ],
+          "intro": "Play each clip with sound and compare the highlighted reply. The frame rates refer to Gemini's video input."
         }
       ]
     },
@@ -723,6 +734,217 @@
       "csv": "data/training-budget.csv",
       "code": "E24",
       "context": "32 H200s · global batch 128 · 2,177 h. Costs estimated from time per update."
+    },
+    "e25": {
+      "label": "Short-utterance speaker assignment",
+      "kind": "table",
+      "code": "E25",
+      "context": "Same 40 clips; manual checks of short-utterance speaker assignment. Accuracy improves by 45 percentage points at 5 fps.",
+      "html": "<table><thead><tr><th>Video sampling</th><th>Correct assignments</th><th>Accuracy ↑</th></tr></thead><tbody><tr><td>1 fps</td><td>15/40</td><td>37.5%</td></tr><tr><td>5 fps</td><td>33/40</td><td>82.5%</td></tr></tbody></table>",
+      "csv": "data/frame-rate-binding.csv"
+    },
+    "e26": {
+      "label": "1 fps errors: video examples",
+      "kind": "videos",
+      "code": "E26",
+      "groups": [
+        {
+          "id": "fps-case-1",
+          "code": "Video E26 · Case 1",
+          "title": "Case 1: “Um”",
+          "description": "Listen for the man's “Um” after the woman's question.",
+          "videos": [
+            {
+              "label": "Source video · original audio",
+              "src": "assets/videos/fps-case-1.mp4",
+              "poster": "assets/posters/fps-case-1.jpg",
+              "duration": 5.035
+            }
+          ],
+          "conditions": [],
+          "annotationComparison": [
+            {
+              "label": "Gemini · 1 fps · wrong speaker",
+              "status": "incorrect",
+              "turns": [
+                {
+                  "speaker": "speaker_1: woman in pink jacket",
+                  "text": "So, what do you want to talk about? Um?",
+                  "highlight": "Um"
+                }
+              ]
+            },
+            {
+              "label": "Gemini · 5 fps · correct speaker",
+              "status": "correct",
+              "turns": [
+                {
+                  "speaker": "speaker_1: woman in pink jacket",
+                  "text": "So, what do you want to talk about?"
+                },
+                {
+                  "speaker": "speaker_2: man in greenish shirt",
+                  "text": "Um.",
+                  "highlight": "Um"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "fps-case-2",
+          "code": "Video E26 · Case 2",
+          "title": "Case 2: “Okay”",
+          "description": "Listen for the woman's “Okay” between the man's two lines.",
+          "videos": [
+            {
+              "label": "Source video · original audio",
+              "src": "assets/videos/fps-case-2.mp4",
+              "poster": "assets/posters/fps-case-2.jpg",
+              "duration": 6.099
+            }
+          ],
+          "conditions": [],
+          "annotationComparison": [
+            {
+              "label": "Gemini · 1 fps · wrong speaker",
+              "status": "incorrect",
+              "turns": [
+                {
+                  "speaker": "speaker_2: man in white security uniform",
+                  "text": "My pacemaker. Okay!",
+                  "highlight": "Okay"
+                },
+                {
+                  "speaker": "speaker_2: man in white security uniform",
+                  "text": "It's burning. Aaaaah!"
+                }
+              ]
+            },
+            {
+              "label": "Gemini · 5 fps · correct speaker",
+              "status": "correct",
+              "turns": [
+                {
+                  "speaker": "speaker_2: man in white security uniform",
+                  "text": "My pacemaker."
+                },
+                {
+                  "speaker": "speaker_1: woman with long blonde hair and bangs",
+                  "text": "Okay.",
+                  "highlight": "Okay"
+                },
+                {
+                  "speaker": "speaker_2: man in white security uniform",
+                  "text": "It's burning."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "fps-case-3",
+          "code": "Video E26 · Case 3",
+          "title": "Case 3: “Hmm”",
+          "description": "Listen for the girl's “Hmm?” after the boy says “Hey, Cassie.”",
+          "videos": [
+            {
+              "label": "Source video · original audio",
+              "src": "assets/videos/fps-case-3.mp4",
+              "poster": "assets/posters/fps-case-3.jpg",
+              "duration": 5.438
+            }
+          ],
+          "conditions": [],
+          "annotationComparison": [
+            {
+              "label": "Gemini · 1 fps · wrong speaker",
+              "status": "incorrect",
+              "turns": [
+                {
+                  "speaker": "speaker_2: boy with short hair",
+                  "text": "Hey, Cassie."
+                },
+                {
+                  "speaker": "speaker_2: boy with short hair",
+                  "text": "Hmm....How do you get somebody to forget?",
+                  "highlight": "Hmm"
+                }
+              ]
+            },
+            {
+              "label": "Gemini · 5 fps · correct speaker",
+              "status": "correct",
+              "turns": [
+                {
+                  "speaker": "speaker_2: boy with short hair",
+                  "text": "Hey, Cassie."
+                },
+                {
+                  "speaker": "speaker_1: girl with long dark hair",
+                  "text": "Hmm?",
+                  "highlight": "Hmm"
+                },
+                {
+                  "speaker": "speaker_2: boy with short hair",
+                  "text": "How do you get somebody to forget?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "fps-case-4",
+          "code": "Video E26 · Case 4",
+          "title": "Case 4: “but”",
+          "description": "Listen for the woman's “but” before the man continues.",
+          "videos": [
+            {
+              "label": "Source video · original audio",
+              "src": "assets/videos/fps-case-4.mp4",
+              "poster": "assets/posters/fps-case-4.jpg",
+              "duration": 5.438
+            }
+          ],
+          "conditions": [],
+          "annotationComparison": [
+            {
+              "label": "Gemini · 1 fps · wrong speaker",
+              "status": "incorrect",
+              "turns": [
+                {
+                  "speaker": "speaker_2: man in dark suit",
+                  "text": "Something potentially very valuable,"
+                },
+                {
+                  "speaker": "speaker_2: man in dark suit",
+                  "text": "but, but getting it could damage an.",
+                  "highlight": "but"
+                }
+              ]
+            },
+            {
+              "label": "Gemini · 5 fps · correct speaker",
+              "status": "correct",
+              "turns": [
+                {
+                  "speaker": "speaker_2: man in dark suit",
+                  "text": "Something potentially very valuable,"
+                },
+                {
+                  "speaker": "speaker_1: woman in white lab coat",
+                  "text": "but",
+                  "highlight": "but"
+                },
+                {
+                  "speaker": "speaker_2: man in dark suit",
+                  "text": "but getting it could damage an."
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   },
   "legacyGroups": {},
