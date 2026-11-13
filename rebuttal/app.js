@@ -79,6 +79,7 @@ class ComparisonPlayer {
     this.ignoreSeekUntil = 0;
     this.root = document.createElement('article');
     this.root.className = group.annotationComparison ? 'video-group annotation-group' : 'video-group';
+    if (group.observation) this.root.classList.add('outcome-group');
     this.root.id = group.id;
     this.root.innerHTML = `
       <div class="video-group-heading">
@@ -88,6 +89,7 @@ class ComparisonPlayer {
           <ol>${group.expectedActions.steps.map(step => `<li>${escapeHTML(step)}</li>`).join('')}</ol>
           ${group.expectedActions.throughout ? `<p class="expected-constraint"><strong>Throughout:</strong> ${escapeHTML(group.expectedActions.throughout)}</p>` : ''}
         </section>` : group.description ? `<p class="video-description">${escapeHTML(group.description)}</p>` : ''}
+        ${group.observation ? `<p class="observed-outcome${group.outcome === 'failure' ? ' observed-failure' : ''}"><strong>${group.outcome === 'failure' ? 'Observed failure' : 'Observed target actions'}:</strong> ${escapeHTML(group.observation)}</p>` : ''}
       </div>
       <div class="video-grid" style="--cols:${group.videos.length}">${group.videos.map((video, i) => `
         <div class="video-cell">
@@ -423,7 +425,7 @@ function bindKeyboardTabs(selector) {
 
 async function initialize() {
   try {
-    const response = await fetch('data/results.json?v=20261112-fps');
+    const response = await fetch('data/results.json?v=20261113-results');
     if (!response.ok) throw new Error('Supplement data unavailable');
     reviewData = await response.json();
     $('.skip-link').addEventListener('click', event => {

@@ -1,0 +1,6 @@
+Setting,Steps,FID ↓,FVD ↓,ID ↑,WER ↓,Turn Sync-C ↑,Match ↑
+Native LTX-2.3,0,114.34,34.79,0.4951,0.1192,3.4091,0.7500
+"Same-data, original LTX format",10k,111.20,32.93,0.4809,0.0950,3.4301,0.7548
++ Screenplay,10k,114.01,32.26,0.4844,0.0817,3.4998,0.7680
+"Frozen Director, continued",10k,116.24,33.67,0.4896,0.1089,3.4638,0.7740
+"Ours, full",10k,108.19,28.28,0.4992,0.0769,3.8979,0.8491

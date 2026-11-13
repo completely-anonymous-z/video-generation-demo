@@ -1,0 +1,7 @@
+Condition,Cases (% of E8),LTX-2.3 pass rate,Ours pass rate
+Frontal human controls,8 (20%),6/8 (75.0%),7/8 (87.5%)
+Non-human characters,8 (20%),4/8 (50.0%),6/8 (75.0%)
+Partially out of frame,8 (20%),5/8 (62.5%),7/8 (87.5%)
+Occluded,8 (20%),4/8 (50.0%),6/8 (75.0%)
+"No frontal view (4 profile, 4 rear-view)",8 (20%),3/8 (37.5%),5/8 (62.5%)
+Overall,40 (100%),22/40 (55.0%),31/40 (77.5%)

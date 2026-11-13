@@ -80,28 +80,30 @@
           "anchor": "t5CX-Q1",
           "key": "Q1",
           "title": "Character binding beyond frontal faces",
-          "comment": "How robust is the model's character binding capability? Specifically, what level of improvement can be achieved for non-human characters, characters that are partially off-screen or occluded, or characters lacking a frontal face (e.g., those shown only in profile)?",
+          "comment": "How robust is the model's character binding capability? Specifically, what level of improvement can be achieved for non-human characters, characters that are partially off-screen or occluded, or characters lacking a frontal face (e.g., those shown only in profile)?\n\nFollow-up: Binding under challenging conditions. Could you clarify the composition and scoring protocol of E8, including whether it overlaps with the original Director-Bench? A breakdown by condition, or case-level outcomes where there are too few examples, would help interpret the aggregate improvement.",
           "evidence": [
+            "e28",
             "e8",
             "e9",
             "e10",
             "e11",
             "e12"
           ],
-          "intro": "For each video pair, compare the highlighted action sequence with the outputs."
+          "intro": "E28 gives the condition breakdown and scoring rule for E8. Video pairs show the requested actions."
         },
         {
           "anchor": "t5CX-Q2",
           "key": "Q2",
           "title": "Script edits and complex scenes",
-          "comment": "Can the model's script execution capability be further verified? For instance, in edge cases where the speaker of a specific line, the executor of an action, or the chronological order of two events is altered, does the generated output change accordingly? Furthermore, can the model handle more complex scenarios, such as martial arts scenes or scenes with a larger number of characters?",
+          "comment": "Can the model's script execution capability be further verified? For instance, in edge cases where the speaker of a specific line, the executor of an action, or the chronological order of two events is altered, does the generated output change accordingly? Furthermore, can the model handle more complex scenarios, such as martial arts scenes or scenes with a larger number of characters?\n\nFollow-up: Script execution in complex scenes. The choir and martial-arts examples are useful, but they leave open how consistently the model assigns distinct actions to the correct characters in a larger cast. Could you report outcomes on a small set of such cases, including failures? A paired example that changes only which character performs an action, while keeping the first frame and the rest of the screenplay fixed, would directly complement the speaker reassignment and event-order tests.",
           "evidence": [
+            "e29",
             "e13",
             "e14",
             "e15",
             "e16"
           ],
-          "intro": "Compare speaker assignment and event order. Additional clips show larger casts and martial arts."
+          "intro": "E29 shows targeted actions and failures in group scenes. E13 reassigns a spoken line; E14 reverses action order. Expand Input prompt to inspect the instructions."
         },
         {
           "anchor": "t5CX-Q3",
@@ -132,12 +134,13 @@
         {
           "anchor": "t5CX-Q5",
           "key": "Q5",
-          "title": "Training budget",
-          "comment": "What are the specific number of training steps and the computational cost (e.g., GPU hours) for the two training stages?",
+          "title": "Matched training and budget",
+          "comment": "What are the specific number of training steps and the computational cost (e.g., GPU hours) for the two training stages?\n\nFollow-up: Matched training budget. The no-Director run stops at 8k updates, whereas the Director variants reach 10k. Could you report a comparison at matched update counts, either by extending the no-Director run to 10k or by comparing the corresponding 8k checkpoints? This would help isolate the contribution of the Director.",
           "evidence": [
+            "e27",
             "e24"
           ],
-          "intro": "View the update counts and estimated training cost."
+          "intro": "Compare the controls at 10k updates (E27), or view training costs by phase (E24)."
         }
       ]
     }
@@ -197,7 +200,7 @@
       "csv": "data/binding-test.csv",
       "html": "<table>\n<thead>\n<tr>\n<th>Method</th>\n<th>Binding accuracy (%) ↑</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>LTX-2.3</td>\n<td>55.0</td>\n</tr>\n<tr>\n<td>Ours</td>\n<td>77.5</td>\n</tr>\n</tbody>\n</table>\n",
       "code": "E8",
-      "context": "Dedicated 40-video binding test. Higher is better."
+      "context": "40 cases. Each binding needs agreement from at least 4 of 5 raters; all bindings must pass for a case to pass. E28 gives the condition breakdown."
     },
     "e9": {
       "label": "Non-human characters",
@@ -943,6 +946,125 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    "e27": {
+      "label": "Matched controls at 10k updates",
+      "kind": "table",
+      "code": "E27",
+      "html": "<table><thead><tr><th>Setting</th><th>Steps</th><th>FID ↓</th><th>FVD ↓</th><th>ID ↑</th><th>WER ↓</th><th>Turn Sync-C ↑</th><th>Match ↑</th></tr></thead><tbody><tr><td>Native LTX-2.3</td><td>0</td><td>114.34</td><td>34.79</td><td>0.4951</td><td>0.1192</td><td>3.4091</td><td>0.7500</td></tr><tr><td>Same-data, original LTX format</td><td>10k</td><td>111.20</td><td>32.93</td><td>0.4809</td><td>0.0950</td><td>3.4301</td><td>0.7548</td></tr><tr><td>+ Screenplay</td><td>10k</td><td>114.01</td><td>32.26</td><td>0.4844</td><td>0.0817</td><td>3.4998</td><td>0.7680</td></tr><tr><td>Frozen Director, continued</td><td>10k</td><td>116.24</td><td>33.67</td><td>0.4896</td><td>0.1089</td><td>3.4638</td><td>0.7740</td></tr><tr class=\"highlight\"><td>Ours, full</td><td>10k</td><td>108.19</td><td>28.28</td><td>0.4992</td><td>0.0769</td><td>3.8979</td><td>0.8491</td></tr></tbody></table>",
+      "csv": "data/matched-controls-10k.csv",
+      "context": "Director-Bench. All fine-tuned variants: 10k total updates. Full model: 8k in Stage 1 + 2k in Stage 2. ID: ArcFace similarity; Match: Speaker Match."
+    },
+    "e28": {
+      "kind": "table",
+      "label": "E8: binding by condition",
+      "code": "E28",
+      "csv": "data/binding-by-condition.csv",
+      "html": "<table><thead><tr><th>Condition</th><th>Cases (% of E8)</th><th>LTX-2.3 pass rate</th><th>Ours pass rate</th></tr></thead><tbody><tr><td>Frontal human controls</td><td>8 (20%)</td><td>6/8 (75.0%)</td><td>7/8 (87.5%)</td></tr><tr><td>Non-human characters</td><td>8 (20%)</td><td>4/8 (50.0%)</td><td>6/8 (75.0%)</td></tr><tr><td>Partially out of frame</td><td>8 (20%)</td><td>5/8 (62.5%)</td><td>7/8 (87.5%)</td></tr><tr><td>Occluded</td><td>8 (20%)</td><td>4/8 (50.0%)</td><td>6/8 (75.0%)</td></tr><tr><td>No frontal view (4 profile, 4 rear-view)</td><td>8 (20%)</td><td>3/8 (37.5%)</td><td>5/8 (62.5%)</td></tr><tr><td>Overall</td><td>40 (100%)</td><td>22/40 (55.0%)</td><td>31/40 (77.5%)</td></tr></tbody></table>",
+      "context": "40 cases; only one non-human case overlaps with Director-Bench. Five raters assess each action and spoken line. Each binding needs at least 4/5 correct votes; all bindings must pass for a case to pass."
+    },
+    "e29": {
+      "kind": "videos",
+      "label": "Targeted actions in group scenes",
+      "code": "E29",
+      "groups": [
+        {
+          "id": "action-discussion",
+          "code": "Video E29 · Case 1",
+          "title": "Discussion circle",
+          "description": "",
+          "expectedActions": {
+            "steps": [
+              "The woman in blue on the left stands and remains beside her chair.",
+              "Her neighbor in black turns toward her; the man in white on the right lowers his paper."
+            ]
+          },
+          "outcome": "correct",
+          "observation": "The woman in blue stands beside her chair; her neighbor turns toward her.",
+          "videos": [
+            {
+              "label": "Ours",
+              "src": "assets/videos/action-discussion.mp4",
+              "poster": "assets/posters/action-discussion.jpg",
+              "duration": 8.0,
+              "prompt": "Structured Description:\n    [SCENE]\n        A warmly lit common room. Adults sit in a wide circle with an open space in the middle.\n        A single steady shot keeps the main group in view.\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>7</count>\n        <first>\n            <appearance>woman in a blue blouse</appearance>\n            <posture>seated</posture>\n            <frame_position>on the left</frame_position>\n            <actions>in the opening composition</actions>\n        </first>\n        <second>\n            <appearance>dark-haired woman in black</appearance>\n            <posture>seated</posture>\n            <frame_position>next to her, left of center</frame_position>\n            <actions>in the opening composition</actions>\n        </second>\n        <third>\n            <appearance>blonde woman wearing gray</appearance>\n            <posture>seated</posture>\n            <frame_position>farther back, near the center</frame_position>\n            <actions>in the opening composition</actions>\n        </third>\n        <fourth>\n            <appearance>dark-haired woman in a dark purple top</appearance>\n            <posture>seated</posture>\n            <frame_position>at the back</frame_position>\n            <actions>in the opening composition</actions>\n        </fourth>\n        <fifth>\n            <appearance>woman with a bright blue cardigan</appearance>\n            <posture>seated</posture>\n            <frame_position>near the back right of center</frame_position>\n            <actions>in the opening composition</actions>\n        </fifth>\n        <sixth>\n            <appearance>man in a white shirt</appearance>\n            <posture>seated</posture>\n            <frame_position>at the right</frame_position>\n            <actions>in the opening composition</actions>\n        </sixth>\n        <seventh>\n            <appearance>blonde woman in the foreground</appearance>\n            <posture>seated</posture>\n            <frame_position>with her back to the camera</frame_position>\n            <actions>in the opening composition</actions>\n        </seventh>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>The woman in a blue blouse on the left stands up from her chair and remains beside it.</event>\n            <lighting>keep the original light</lighting>\n            <camera_motion>keep the initial framing</camera_motion>\n        </first>\n        <second>\n            <event>The dark-haired woman in black next to her, left of center turns toward her. The man in a white shirt at the right lowers the paper in his hands to his lap.</event>\n            <lighting>keep the original light</lighting>\n            <camera_motion>keep the initial framing</camera_motion>\n        </second>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        Natural ambience and movement sounds. No dialogue or music.\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"people\", \"character interaction\"][END_SUBJECT]\n    [ATMOSPHERE]\"natural, observant\"[END_ATMOSPHERE]\n"
+            }
+          ],
+          "conditions": []
+        },
+        {
+          "id": "action-yurt",
+          "code": "Video E29 · Case 2",
+          "title": "Yurt",
+          "description": "",
+          "expectedActions": {
+            "steps": [
+              "The man with glasses on the far left lifts his paper in front of his face, then lowers it.",
+              "The man in blue drinks from his bowl; the rightmost man turns toward the paper."
+            ]
+          },
+          "outcome": "correct",
+          "observation": "The man on the left lifts and lowers his paper; the man in blue drinks; the rightmost man turns toward the paper.",
+          "videos": [
+            {
+              "label": "Ours",
+              "src": "assets/videos/action-yurt.mp4",
+              "poster": "assets/posters/action-yurt.jpg",
+              "duration": 8.0,
+              "prompt": "Structured Description:\n    [SCENE]\n        A dim yurt with a wooden table, a black kettle and five men with bowls or papers.\n        A single steady shot keeps the main group in view.\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>5</count>\n        <first>\n            <appearance>older man with glasses at the far left</appearance>\n            <posture>seated</posture>\n            <frame_position>behind the kettle with a sheet of paper</frame_position>\n            <actions>in the opening composition</actions>\n        </first>\n        <second>\n            <appearance>elderly man with a long gray beard</appearance>\n            <posture>seated</posture>\n            <frame_position>back center-left</frame_position>\n            <actions>in the opening composition</actions>\n        </second>\n        <third>\n            <appearance>man with a black cap</appearance>\n            <posture>seated</posture>\n            <frame_position>just right of the bearded man</frame_position>\n            <actions>in the opening composition</actions>\n        </third>\n        <fourth>\n            <appearance>dark-haired man in a blue jacket</appearance>\n            <posture>seated</posture>\n            <frame_position>right of center holding a bowl</frame_position>\n            <actions>in the opening composition</actions>\n        </fourth>\n        <fifth>\n            <appearance>man in a flat cap</appearance>\n            <posture>seated</posture>\n            <frame_position>at the right foreground holding a bowl</frame_position>\n            <actions>in the opening composition</actions>\n        </fifth>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>The older man with glasses at the far left behind the kettle with a sheet of paper lifts his paper vertically in front of his face, then lowers it.</event>\n            <lighting>keep the original light</lighting>\n            <camera_motion>keep the initial framing</camera_motion>\n        </first>\n        <second>\n            <event>The dark-haired man in a blue jacket right of center holding a bowl takes a sip from his own bowl. The man in a flat cap at the right foreground holding a bowl turns his head toward the paper.</event>\n            <lighting>keep the original light</lighting>\n            <camera_motion>keep the initial framing</camera_motion>\n        </second>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        Natural ambience and movement sounds. No dialogue or music.\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"people\", \"character interaction\"][END_SUBJECT]\n    [ATMOSPHERE]\"natural, observant\"[END_ATMOSPHERE]\n"
+            }
+          ],
+          "conditions": []
+        },
+        {
+          "id": "action-living-room",
+          "code": "Video E29 · Case 3",
+          "title": "Living room: additional people sit",
+          "description": "",
+          "expectedActions": {
+            "steps": [
+              "The man in navy sits on the sofa and remains seated.",
+              "The woman in teal straightens up; the girl in red folds her arms."
+            ]
+          },
+          "outcome": "failure",
+          "observation": "The designated man sits, but another man and the woman in teal also sit.",
+          "videos": [
+            {
+              "label": "Ours",
+              "src": "assets/videos/action-living-room.mp4",
+              "poster": "assets/posters/action-living-room.jpg",
+              "duration": 8.0,
+              "prompt": "Structured Description:\n    [SCENE]\n        A warm living room with a sofa and a tray on the coffee table.\n        A single steady shot keeps the main group in view.\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>5</count>\n        <first>\n            <appearance>blonde woman in a teal dress</appearance>\n            <posture>standing</posture>\n            <frame_position>at the left beside the coffee table</frame_position>\n            <actions>in the opening composition</actions>\n        </first>\n        <second>\n            <appearance>tall man in a navy shirt</appearance>\n            <posture>standing</posture>\n            <frame_position>behind the child, left of center</frame_position>\n            <actions>in the opening composition</actions>\n        </second>\n        <third>\n            <appearance>small girl in a purple dress</appearance>\n            <posture>standing</posture>\n            <frame_position>low at center</frame_position>\n            <actions>in the opening composition</actions>\n        </third>\n        <fourth>\n            <appearance>older man in a tan jacket</appearance>\n            <posture>standing</posture>\n            <frame_position>at center-right</frame_position>\n            <actions>in the opening composition</actions>\n        </fourth>\n        <fifth>\n            <appearance>blonde girl in a red dress and dark boots</appearance>\n            <posture>standing</posture>\n            <frame_position>at the far right</frame_position>\n            <actions>in the opening composition</actions>\n        </fifth>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>The tall man in a navy shirt behind the child, left of center sits down on the sofa and remains seated.</event>\n            <lighting>keep the original light</lighting>\n            <camera_motion>keep the initial framing</camera_motion>\n        </first>\n        <second>\n            <event>The blonde woman in a teal dress at the left beside the coffee table straightens up beside the coffee table. The blonde girl in a red dress and dark boots at the far right folds her arms at the right edge.</event>\n            <lighting>keep the original light</lighting>\n            <camera_motion>keep the initial framing</camera_motion>\n        </second>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        Natural ambience and movement sounds. No dialogue or music.\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"people\", \"character interaction\"][END_SUBJECT]\n    [ATMOSPHERE]\"natural, observant\"[END_ATMOSPHERE]\n"
+            }
+          ],
+          "conditions": []
+        },
+        {
+          "id": "action-newsroom",
+          "code": "Video E29 · Case 4",
+          "title": "Newsroom: the wrong person gestures",
+          "description": "",
+          "expectedActions": {
+            "steps": [
+              "The woman behind the center desk extends one hand, palm up, between the two standing men.",
+              "The man on the right lowers his newspaper; the man in tan straightens and looks up."
+            ]
+          },
+          "outcome": "failure",
+          "observation": "The far-left woman performs the palm-up gesture; the intended rear-center woman does not.",
+          "videos": [
+            {
+              "label": "Ours",
+              "src": "assets/videos/action-newsroom.mp4",
+              "poster": "assets/posters/action-newsroom.jpg",
+              "duration": 8.0,
+              "prompt": "Structured Description:\n    [SCENE]\n        People gather around a computer in a busy newsroom.\n        A single steady shot keeps the main group in view.\n    [END_SCENE]\n    [VISIBLE_MAIN_CHARACTER]\n        <count>6</count>\n        <first>\n            <appearance>blonde woman in black</appearance>\n            <posture>standing</posture>\n            <frame_position>at the far left edge</frame_position>\n            <actions>in the opening composition</actions>\n        </first>\n        <second>\n            <appearance>man with a receding hairline in a dark jacket</appearance>\n            <posture>seated</posture>\n            <frame_position>by the monitors at the left</frame_position>\n            <actions>in the opening composition</actions>\n        </second>\n        <third>\n            <appearance>short-haired man in glasses and a tan shirt with a green tie</appearance>\n            <posture>standing</posture>\n            <frame_position>bent over the center desk</frame_position>\n            <actions>in the opening composition</actions>\n        </third>\n        <fourth>\n            <appearance>woman with light-brown hair in a black top</appearance>\n            <posture>standing</posture>\n            <frame_position>behind him in the middle</frame_position>\n            <actions>in the opening composition</actions>\n        </fourth>\n        <fifth>\n            <appearance>balding man in black glasses holding a newspaper</appearance>\n            <posture>standing</posture>\n            <frame_position>on the right</frame_position>\n            <actions>in the opening composition</actions>\n        </fifth>\n        <sixth>\n            <appearance>dark-haired man in a black shirt</appearance>\n            <posture>seated</posture>\n            <frame_position>in front of the monitor at the bottom right</frame_position>\n            <actions>in the opening composition</actions>\n        </sixth>\n    [END_VISIBLE_MAIN_CHARACTER]\n    [EVENT_SEQUENCE]\n        <first>\n            <event>The woman with light-brown hair in a black top behind him in the middle extends one hand palm up between the two standing men and holds it there.</event>\n            <lighting>keep the original light</lighting>\n            <camera_motion>keep the initial framing</camera_motion>\n        </first>\n        <second>\n            <event>The balding man in black glasses holding a newspaper on the right lowers the newspaper to his waist. The short-haired man in glasses and a tan shirt with a green tie bent over the center desk straightens his back and looks up from the screen.</event>\n            <lighting>keep the original light</lighting>\n            <camera_motion>keep the initial framing</camera_motion>\n        </second>\n    [END_EVENT_SEQUENCE]\n    [AUDIO_CAPTION]\n        Natural ambience and movement sounds. No dialogue or music.\n    [END_AUDIO_CAPTION]\n    [SUBJECT][\"people\", \"character interaction\"][END_SUBJECT]\n    [ATMOSPHERE]\"natural, observant\"[END_ATMOSPHERE]\n"
+            }
+          ],
+          "conditions": []
         }
       ]
     }
